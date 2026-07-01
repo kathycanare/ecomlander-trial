@@ -28,6 +28,7 @@
   assign selected_product = closest.product
   assign selected_variant_media = selected_product.selected_or_first_available_variant.featured_media
   assign first_3d_model = selected_product.media | where: 'media_type', 'model' | first
+  assign badge_text = badge_text | default: selected_product.metafields.custom.badge_text
 
   if block_settings.hide_variants
     assign variant_images = selected_product.images | where: 'attached_to_variant?', true | map: 'src'
@@ -368,9 +369,15 @@
             <div
               class="product-media-constraint-wrapper">
               {%- render 'product-media', media: media, sizes: media_sizes, is_main_product_media: forloop.first -%}
+              {%- if forloop.first and badge_text != blank -%}
+                {%- render 'product-media-badge', text: badge_text, icon: badge_icon, background_color: badge_background_color, text_color: badge_text_color -%}
+              {%- endif -%}
             </div>
           {% else %}
             {%- render 'product-media', media: media, sizes: media_sizes, is_main_product_media: forloop.first -%}
+            {%- if forloop.first and badge_text != blank -%}
+              {%- render 'product-media-badge', text: badge_text, icon: badge_icon, background_color: badge_background_color, text_color: badge_text_color -%}
+            {%- endif -%}
           {% endif %}
         {% endcapture %}
         {% capture class %}

@@ -1,0 +1,140 @@
+{%- doc -%}
+  A "subscribe & save" checkbox. Functional only if the product has a subscription selling
+  plan set up in Shopify Admin (e.g. via the Shopify Subscriptions app) — checking it adds the
+  product to the cart on that selling plan, letting Shopify apply the real subscription
+  discount at checkout. If no selling plan exists yet, the checkbox renders disabled.
+{%- enddoc -%}
+
+{%- liquid
+  assign block_settings = block.settings
+  assign product = closest.product
+  assign selling_plan_id = ''
+  if product.selling_plan_groups.size > 0
+    assign first_group = product.selling_plan_groups.first
+    assign selling_plan_id = first_group.selling_plans.first.id
+  endif
+-%}
+
+<script
+  src="{{ 'subscription-toggle.js' | asset_url }}"
+  type="module"
+  fetchpriority="low"
+></script>
+
+<subscription-toggle-component
+  class="subscription-toggle spacing-style"
+  style="{% render 'spacing-style', settings: block_settings %}"
+  data-selling-plan-id="{{ selling_plan_id }}"
+  {{ block.shopify_attributes }}
+>
+  {% render 'checkbox',
+    id: 'SubscriptionToggle-' | append: block.id,
+    name: 'subscription-toggle-opt-in',
+    value: '1',
+    label: block_settings.label,
+    checked: block_settings.default_checked,
+    disabled: selling_plan_id == blank
+  %}
+  {%- if block_settings.description != blank -%}
+    <p class="subscription-toggle__description">{{ block_settings.description }}</p>
+  {%- endif -%}
+</subscription-toggle-component>
+
+{% stylesheet %}
+  .subscription-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-3xs, 0.25rem);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--style-border-radius-xs, 6px);
+    padding: var(--padding-md);
+  }
+
+  .subscription-toggle__description {
+    margin: 0;
+    margin-inline-start: calc(var(--icon-size-sm, 18px) + var(--gap-2xs, 0.5rem));
+    font-size: var(--font-size--sm, 0.8rem);
+    opacity: var(--opacity-subdued-text);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Subscription toggle",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Checkbox label",
+      "default": "Save 20% on automatic refills"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "Monthly delivery, zero commitment, cancel anytime"
+    },
+    {
+      "type": "checkbox",
+      "id": "default_checked",
+      "label": "Checked by default",
+      "default": true
+    },
+    {
+      "type": "paragraph",
+      "content": "Requires a subscription selling plan on this product (e.g. via the Shopify Subscriptions app) to actually apply a discount. Otherwise the checkbox renders disabled."
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-start",
+      "label": "Left",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-end",
+      "label": "Right",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Subscription toggle",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

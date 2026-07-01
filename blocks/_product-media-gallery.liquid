@@ -5,7 +5,11 @@
   block_id: block.id,
   block_shopify_attributes: block.shopify_attributes,
   block: block,
-  section: section
+  section: section,
+  badge_text: block.settings.badge_text,
+  badge_icon: block.settings.badge_icon,
+  badge_background_color: block.settings.badge_background_color,
+  badge_text_color: block.settings.badge_text_color
 %}
 
 {% schema %}
@@ -189,6 +193,39 @@
       "unit": "px",
       "default": 0,
       "visible_if": "{{ block.settings.slideshow_controls_style == 'thumbnails' or block.settings.slideshow_mobile_controls_style == 'thumbnails' }}"
+    },
+    {
+      "type": "header",
+      "content": "Merchandising badge"
+    },
+    {
+      "type": "select",
+      "id": "badge_icon",
+      "label": "Badge icon",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "star", "label": "Star" },
+        { "value": "fire", "label": "Fire" }
+      ],
+      "default": "star"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text override",
+      "info": "Shown over the main image, e.g. \"Bestseller\". Leave blank to use the product's custom.badge_text metafield instead; leave both blank to hide it."
+    },
+    {
+      "type": "color",
+      "id": "badge_background_color",
+      "label": "Badge background color",
+      "default": "#B3261E"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Badge text color",
+      "default": "#FFFFFF"
     },
     {
       "type": "header",

@@ -1,0 +1,125 @@
+{%- doc -%}
+  A single checkmark + text item, meant to be repeated inside a "group" block (row direction,
+  wrapped) to build a feature checklist like "Ease everyday stiffness / Improve daily mobility".
+{%- enddoc -%}
+
+{%- liquid
+  assign block_settings = block.settings
+-%}
+
+<div
+  class="feature-checkmark spacing-style"
+  style="
+    {% render 'spacing-style', settings: block_settings %}
+    --feature-checkmark-color: {{ block_settings.checkmark_color }};
+  "
+  {{ block.shopify_attributes }}
+>
+  <span class="feature-checkmark__icon">
+    {{- 'icon-checkmark.svg' | inline_asset_content -}}
+  </span>
+  {%- if block_settings.text != blank -%}
+    <span class="feature-checkmark__text">{{ block_settings.text }}</span>
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+  /* The parent "group" block has no built-in wrap setting (its flex container always renders
+     --flex-wrap: nowrap inline); scope a wrap override to groups that actually contain
+     feature-checkmark items so the 2-up grid works without a global override. */
+  .group-block-content:has(> .feature-checkmark) {
+    flex-wrap: wrap;
+  }
+
+  .feature-checkmark {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-2xs, 0.5rem);
+    flex: 1 1 45%;
+    min-width: 0;
+  }
+
+  .feature-checkmark__icon,
+  .feature-checkmark__icon svg {
+    width: var(--icon-size-sm, 18px);
+    height: var(--icon-size-sm, 18px);
+    color: var(--feature-checkmark-color, var(--color-instock));
+    flex-shrink: 0;
+  }
+
+  .feature-checkmark__text {
+    font-size: var(--font-paragraph--size);
+    line-height: 1.3;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Feature checkmark",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "Ease everyday stiffness"
+    },
+    {
+      "type": "color",
+      "id": "checkmark_color",
+      "label": "Checkmark color",
+      "default": "#0F3D2E"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-start",
+      "label": "Left",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-end",
+      "label": "Right",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature checkmark",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

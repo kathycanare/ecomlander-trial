@@ -192,22 +192,100 @@
               },
               "blocks": {}
             },
-            "variant_picker_R3rGDr": {
-              "type": "variant-picker",
+            "feature_checklist_1": {
+              "type": "group",
+              "name": "Feature checklist",
               "settings": {
-                "variant_style": "buttons",
-                "show_swatches": false,
-                "option_label_text_color": "",
-                "variant_style_class": "default",
-                "custom_variant_background": "{{ settings.color_palette.background }}",
-                "custom_variant_text": "{{ settings.color_palette.foreground }}",
-                "custom_variant_border": "{{ settings.color_palette.foreground }}",
-                "selected_variant_style_class": "default",
-                "custom_selected_variant_background": "{{ settings.color_palette.foreground }}",
-                "custom_selected_variant_text": "{{ settings.color_palette.background }}",
-                "custom_selected_variant_border": "{{ settings.color_palette.foreground }}",
-                "alignment": "left",
-                "padding-block-start": 0,
+                "content_direction": "row",
+                "vertical_on_mobile": false,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "gap": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 8,
+                "padding-block-end": 8,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "checkmark_1": {
+                  "type": "feature-checkmark",
+                  "settings": { "text": "Ease everyday stiffness" }
+                },
+                "checkmark_2": {
+                  "type": "feature-checkmark",
+                  "settings": { "text": "Improve daily mobility" }
+                },
+                "checkmark_3": {
+                  "type": "feature-checkmark",
+                  "settings": { "text": "Support joint comfort" }
+                },
+                "checkmark_4": {
+                  "type": "feature-checkmark",
+                  "settings": { "text": "Feel more flexible" }
+                }
+              },
+              "block_order": ["checkmark_1", "checkmark_2", "checkmark_3", "checkmark_4"]
+            },
+            "bundle_selector_1": {
+              "type": "bundle-selector",
+              "name": "Bundle selector",
+              "settings": {
+                "heading": "Choose your quantity",
+                "heading_preset": "h5",
+                "padding-block-start": 8,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "option_1": {
+                  "type": "_bundle-option",
+                  "settings": {
+                    "option_value_name": "1 Bottle",
+                    "unit_count": 1,
+                    "unit_label": "bottle"
+                  }
+                },
+                "option_2": {
+                  "type": "_bundle-option",
+                  "settings": {
+                    "option_value_name": "2+1",
+                    "unit_count": 3,
+                    "unit_label": "bottle",
+                    "banner_text": "92% of customers choose: Buy 2, Get 1 Free"
+                  }
+                },
+                "option_3": {
+                  "type": "_bundle-option",
+                  "settings": {
+                    "option_value_name": "3+2",
+                    "unit_count": 5,
+                    "unit_label": "bottle",
+                    "best_value_badge": true
+                  }
+                }
+              },
+              "block_order": ["option_1", "option_2", "option_3"]
+            },
+            "subscription_toggle_1": {
+              "type": "subscription-toggle",
+              "settings": {
+                "label": "Save 20% on automatic refills",
+                "description": "Monthly delivery, zero commitment, cancel anytime",
+                "default_checked": true,
+                "padding-block-start": 8,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
@@ -299,14 +377,173 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "trust_rows_1": {
+              "type": "group",
+              "name": "Trust & delivery info",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 8,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 8,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "product_inventory_1": {
+                  "type": "product-inventory",
+                  "settings": {}
+                },
+                "trust_row_shipping": {
+                  "type": "trust-row",
+                  "settings": {
+                    "icon": "truck",
+                    "text": "Fast, tracked shipping to United States"
+                  }
+                },
+                "trust_row_guarantee": {
+                  "type": "trust-row",
+                  "settings": {
+                    "icon": "lock",
+                    "text": "60 day money back guarantee"
+                  }
+                },
+                "trust_row_ingredients": {
+                  "type": "trust-row",
+                  "settings": {
+                    "icon": "clipboard",
+                    "text": "Full Ingredients List"
+                  }
+                }
+              },
+              "block_order": [
+                "product_inventory_1",
+                "trust_row_shipping",
+                "trust_row_guarantee",
+                "trust_row_ingredients"
+              ]
+            },
+            "icon_badges_1": {
+              "type": "group",
+              "name": "Trust badges",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": false,
+                "horizontal_alignment": "space-between",
+                "vertical_alignment": "center",
+                "gap": 8,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 16,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "badge_1": {
+                  "type": "icon-badge",
+                  "settings": { "icon": "check_box", "label": "Joint Health Support" }
+                },
+                "badge_2": {
+                  "type": "icon-badge",
+                  "settings": { "icon": "recycle", "label": "Third Party Tested" }
+                },
+                "badge_3": {
+                  "type": "icon-badge",
+                  "settings": { "icon": "stopwatch", "label": "Inflammation Relief" }
+                }
+              },
+              "block_order": ["badge_1", "badge_2", "badge_3"]
+            },
+            "accordion_1": {
+              "type": "accordion",
+              "name": "Product details",
+              "settings": {},
+              "blocks": {
+                "row_description": {
+                  "type": "_accordion-row",
+                  "settings": { "heading": "Product Description" },
+                  "blocks": {
+                    "text": {
+                      "type": "text",
+                      "settings": { "text": "<p>Add your detailed product description here.</p>" }
+                    }
+                  },
+                  "block_order": ["text"]
+                },
+                "row_ingredients": {
+                  "type": "_accordion-row",
+                  "settings": { "heading": "Ingredients & Nutrition" },
+                  "blocks": {
+                    "text": {
+                      "type": "text",
+                      "settings": { "text": "{{ closest.product.metafields.custom.ingredients }}" }
+                    }
+                  },
+                  "block_order": ["text"]
+                },
+                "row_faq": {
+                  "type": "_accordion-row",
+                  "settings": { "heading": "Frequently Asked Questions" },
+                  "blocks": {
+                    "text": {
+                      "type": "text",
+                      "settings": { "text": "<p>Add your FAQ content here.</p>" }
+                    }
+                  },
+                  "block_order": ["text"]
+                },
+                "row_shipping": {
+                  "type": "_accordion-row",
+                  "settings": { "heading": "Shipping, Returns & 60 Day Guarantee" },
+                  "blocks": {
+                    "text": {
+                      "type": "text",
+                      "settings": { "text": "<p>Add your shipping and returns policy here.</p>" }
+                    }
+                  },
+                  "block_order": ["text"]
+                }
+              },
+              "block_order": ["row_description", "row_ingredients", "row_faq", "row_shipping"]
             }
           },
           "block_order": [
             "group_icgrde",
             "divider_VJhene",
-            "variant_picker_R3rGDr",
+            "text_aEtTtq",
+            "feature_checklist_1",
+            "bundle_selector_1",
+            "subscription_toggle_1",
             "buy_buttons_eYQEYi",
-            "text_aEtTtq"
+            "trust_rows_1",
+            "icon_badges_1",
+            "accordion_1"
           ]
         }
       },

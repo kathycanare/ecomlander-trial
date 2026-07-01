@@ -1,0 +1,61 @@
+{%- doc -%}
+  Renders a small merchandising badge (e.g. "Bestseller") over the main product image, reusing
+  the theme's shared product-badge classes/position/typography settings (the same ones the sale
+  and sold-out badges use on product cards) so it stays visually consistent site-wide.
+
+  @param {string} text - The badge text
+  @param {string} [icon] - 'star', 'fire', or 'none'
+  @param {string} [background_color] - Badge background color
+  @param {string} [text_color] - Badge text color
+
+  @example
+  {% render 'product-media-badge', text: 'Bestseller', icon: 'star' %}
+{%- enddoc -%}
+
+<div
+  class="product-badges product-badges--{{ settings.badge_position }}"
+  style="
+    --badge-border-radius: {{ settings.badge_corner_radius }}px;
+    --badge-font-family: var(--font-{{ settings.badge_font_family }}--family);
+    --badge-font-weight: var(--font-{{ settings.badge_font_family }}--weight);
+    --badge-text-transform: {{ settings.badge_text_transform }};
+  "
+>
+  <div
+    class="product-badges__badge product-badges__badge--rectangle product-media-badge__badge"
+    style="
+      {% if background_color != blank %}background: {{ background_color }};{% endif %}
+      {% if text_color != blank %}color: {{ text_color }};{% endif %}
+    "
+  >
+    {%- unless icon == 'none' or icon == blank -%}
+      <span class="product-media-badge__icon">
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+        >
+          {%- render 'icon', icon: icon -%}
+        </svg>
+      </span>
+    {%- endunless -%}
+    {{- text -}}
+  </div>
+</div>
+
+{% render 'product-badges-styles' %}
+
+{% stylesheet %}
+  .product-media-badge__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+  }
+
+  .product-media-badge__icon,
+  .product-media-badge__icon svg {
+    width: 0.9em;
+    height: 0.9em;
+  }
+{% endstylesheet %}
