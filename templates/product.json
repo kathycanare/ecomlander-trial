@@ -120,7 +120,54 @@
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
               },
-              "blocks": {}
+              "blocks": {
+                "custom_accordion_row_aVi94q": {
+                  "type": "_custom-accordion-row",
+                  "name": "Accordion row",
+                  "settings": {
+                    "heading": "Product Description",
+                    "content": "<p>Add your content here.</p>",
+                    "open_by_default": false
+                  },
+                  "blocks": {}
+                },
+                "custom_accordion_row_rBVY6K": {
+                  "type": "_custom-accordion-row",
+                  "name": "Accordion row",
+                  "settings": {
+                    "heading": "Ingredients & Nutrition",
+                    "content": "<p>Add your content here.</p>",
+                    "open_by_default": false
+                  },
+                  "blocks": {}
+                },
+                "custom_accordion_row_Jq6n88": {
+                  "type": "_custom-accordion-row",
+                  "name": "Accordion row",
+                  "settings": {
+                    "heading": "Frequently Asked Questions",
+                    "content": "<p>Add your content here.</p>",
+                    "open_by_default": false
+                  },
+                  "blocks": {}
+                },
+                "custom_accordion_row_3zmVHf": {
+                  "type": "_custom-accordion-row",
+                  "name": "Accordion row",
+                  "settings": {
+                    "heading": "Shipping, Returns & 60 Day Guarantee",
+                    "content": "<p>Add your content here.</p>",
+                    "open_by_default": false
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "custom_accordion_row_aVi94q",
+                "custom_accordion_row_rBVY6K",
+                "custom_accordion_row_Jq6n88",
+                "custom_accordion_row_3zmVHf"
+              ]
             }
           },
           "block_order": [
@@ -690,11 +737,11 @@
                 "trust_row_ingredients"
               ]
             },
-            "custom_accordion_MCPygY": {
+            "custom_accordion_NKpiUJ": {
               "type": "custom-accordion",
               "name": "Custom accordion",
               "settings": {
-                "visibility": "mobile",
+                "visibility": "desktop",
                 "border_color": "#E5E5E5",
                 "background_color": "#FFFFFF",
                 "heading_color": "#1A1A1A",
@@ -707,7 +754,54 @@
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
               },
-              "blocks": {}
+              "blocks": {
+                "custom_accordion_row_NJKdHk": {
+                  "type": "_custom-accordion-row",
+                  "name": "Accordion row",
+                  "settings": {
+                    "heading": "Product Description",
+                    "content": "<p>Add your content here.</p>",
+                    "open_by_default": false
+                  },
+                  "blocks": {}
+                },
+                "custom_accordion_row_EmBjFq": {
+                  "type": "_custom-accordion-row",
+                  "name": "Accordion row",
+                  "settings": {
+                    "heading": "Ingredients & Nutrition",
+                    "content": "<p>Add your content here.</p>",
+                    "open_by_default": false
+                  },
+                  "blocks": {}
+                },
+                "custom_accordion_row_dm6WTa": {
+                  "type": "_custom-accordion-row",
+                  "name": "Accordion row",
+                  "settings": {
+                    "heading": "Frequently Asked Questions",
+                    "content": "<p>Add your content here.</p>",
+                    "open_by_default": false
+                  },
+                  "blocks": {}
+                },
+                "custom_accordion_row_bdNDUe": {
+                  "type": "_custom-accordion-row",
+                  "name": "Accordion row",
+                  "settings": {
+                    "heading": "Shipping, Returns & 60 Day Guarantee",
+                    "content": "<p>Add your content here.</p>",
+                    "open_by_default": false
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "custom_accordion_row_NJKdHk",
+                "custom_accordion_row_EmBjFq",
+                "custom_accordion_row_dm6WTa",
+                "custom_accordion_row_bdNDUe"
+              ]
             },
             "video_testimonials_1": {
               "type": "video-testimonials",
@@ -800,7 +894,7 @@
             "subscription_toggle_1",
             "buy_buttons_eYQEYi",
             "trust_rows_1",
-            "custom_accordion_MCPygY",
+            "custom_accordion_NKpiUJ",
             "video_testimonials_1"
           ]
         }
