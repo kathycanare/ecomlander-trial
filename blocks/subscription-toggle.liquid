@@ -71,17 +71,29 @@
     color: var(--subscription-toggle-heading-color, inherit);
   }
 
-  .subscription-toggle .checkbox__input:checked::after {
-    background-color: var(--subscription-toggle-check-color) !important;
-    border-color: var(--subscription-toggle-check-color) !important;
+  .subscription-toggle .checkbox__input {
+    accent-color: var(--subscription-toggle-check-color);
   }
 
   .subscription-toggle .checkbox__input:checked {
+    background: var(--subscription-toggle-check-color) !important;
+    background-color: var(--subscription-toggle-check-color) !important;
     border-color: var(--subscription-toggle-check-color) !important;
+    color: var(--subscription-toggle-check-color) !important;
   }
 
-  .subscription-toggle .checkbox__label svg {
+  .subscription-toggle .checkbox__input:checked::before,
+  .subscription-toggle .checkbox__input:checked::after {
+    background: var(--subscription-toggle-check-color) !important;
+    background-color: var(--subscription-toggle-check-color) !important;
+    border-color: var(--subscription-toggle-check-color) !important;
+    color: var(--subscription-toggle-check-color) !important;
+  }
+
+  .subscription-toggle .checkbox__label svg,
+  .subscription-toggle .checkbox__label svg path {
     stroke: var(--subscription-toggle-check-color) !important;
+    color: var(--subscription-toggle-check-color) !important;
   }
 
   .subscription-toggle__description {
