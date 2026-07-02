@@ -1081,4 +1081,21 @@
   slideshow-slide.product-media-container--tallest {
     content-visibility: visible;
   }
+
+  .product-media-gallery-host media-gallery .product-media-container {
+    aspect-ratio: 1 / 1 !important;
+    --media-preview-ratio: 1 !important;
+    --gallery-aspect-ratio: 1 !important;
+  }
+
+  .product-media-gallery-host media-gallery .product-media-container .product-media {
+    aspect-ratio: 1 / 1 !important;
+    height: 100% !important;
+  }
+
+  .product-media-gallery-host media-gallery .product-media-container :is(img, video, iframe, .deferred-media__poster-image) {
+    object-fit: cover !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
 {% endstylesheet %}
