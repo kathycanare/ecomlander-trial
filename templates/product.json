@@ -370,10 +370,10 @@
                     "alignment": "flex-start",
                     "star_color": "#F79D0D",
                     "text_color": "#1A1A1A",
-                    "star_size": 18,
-                    "text_size": 15,
+                    "star_size": 20,
+                    "text_size": 16,
                     "padding-block-start": 0,
-                    "padding-block-end": 0,
+                    "padding-block-end": 10,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0
                   },
