@@ -13,7 +13,7 @@
 {%- enddoc -%}
 
 <div
-  class="product-badges product-badges--{{ settings.badge_position }}"
+  class="product-badges product-badges--top-right"
   style="
     --badge-border-radius: {{ settings.badge_corner_radius }}px;
     --badge-font-family: var(--font-{{ settings.badge_font_family }}--family);
@@ -36,7 +36,7 @@
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
         >
-          {%- render 'icon', icon: icon -%}
+          <path d="M10 0 L12 8 L20 10 L12 12 L10 20 L8 12 L0 10 L8 8 Z" fill="currentColor" />
         </svg>
       </span>
     {%- endunless -%}
@@ -51,6 +51,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.35em;
+    font-weight: 700 !important;
   }
 
   .product-media-badge__icon,
