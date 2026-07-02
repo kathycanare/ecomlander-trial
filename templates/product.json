@@ -662,6 +662,8 @@
                 "default_checked": true,
                 "background_color": "#ebfffa",
                 "border_color": "#095946",
+                "heading_color": "#043227",
+                "description_color": "#282828",
                 "padding-block-start": 8,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
