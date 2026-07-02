@@ -589,8 +589,9 @@
               "name": "Bundle selector",
               "settings": {
                 "heading": "Choose your quantity",
-                "heading_preset": "h4",
+                "heading_size": 20,
                 "selected_background_color": "#ebfffa",
+                "highlight_color": "#1c7a4d",
                 "selected_border_color": "#095946",
                 "banner_background_color": "#f79d0d",
                 "banner_text_color": "#043126",
@@ -626,7 +627,7 @@
                     "label_highlight": "1 Free",
                     "unit_count": 3,
                     "unit_label": "bottle",
-                    "banner_text": "<b>92% of customers</b> choose: Buy 2, Get 1 Free",
+                    "banner_text": "92% of customers choose: Buy 2, Get 1 Free",
                     "best_value_badge": false,
                     "image_override": "shopify://shop_images/Group_2087327335_ac99580b-4811-4a00-bbf8-432372f94cd0.png"
                   },
