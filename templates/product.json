@@ -29,19 +29,12 @@
           "settings": {
             "text": "Easier morning starts"
           }
-        },
-        "text_item_NNU6bg": {
-          "type": "text_item",
-          "settings": {
-            "text": "Feel more flexible"
-          }
         }
       },
       "block_order": [
         "text_item_GYndQW",
         "text_item_6DVkaf",
-        "text_item_Xw4gXM",
-        "text_item_NNU6bg"
+        "text_item_Xw4gXM"
       ],
       "name": "Scrolling marquee",
       "settings": {
