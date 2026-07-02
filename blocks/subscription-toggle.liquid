@@ -96,12 +96,20 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: 32px !important;
+    min-width: 32px !important;
+    max-width: 32px !important;
+    height: 32px !important;
+    min-height: 32px !important;
+    max-height: 32px !important;
+    aspect-ratio: 1 / 1 !important;
+    box-sizing: border-box !important;
     border-radius: 8px;
     border: 2px solid var(--subscription-toggle-check-color, #0F3D2E);
     background: transparent;
     cursor: pointer;
+    padding: 0 !important;
+    flex-shrink: 0 !important;
   }
 
   .subscription-toggle .checkbox__input:checked + .checkbox__label {
