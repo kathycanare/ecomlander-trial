@@ -49,8 +49,8 @@
         "item_gap": 40,
         "font_size": 16,
         "padding_vertical": 16,
-        "background_color": "#0F3D2E",
-        "text_color": "#FFFFFF",
+        "background_color": "#F6F6F6",
+        "text_color": "#095946",
         "show_separator": true,
         "separator_character": "•"
       }
