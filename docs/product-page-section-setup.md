@@ -65,10 +65,11 @@ metafield if you want the icon/label to vary per product.
 
 ## 4. Video testimonials ("Real Change for Real People")
 
-Add the "Video testimonials" section to the product template (or anywhere else)
-and add one "Testimonial video" block per customer video. Each block lets you
-either upload a video file or paste a YouTube/Vimeo link, plus an optional
-name/caption. No code involved.
+This is a block (already added, right after the trust/delivery rows in the
+product info column, matching the Figma layout) rather than a full-width
+section — add one "Testimonial video" block inside it per customer video.
+Each block lets you either upload a video file or paste a YouTube/Vimeo
+link, plus an optional name/caption. No code involved.
 
 ## 5. Reviews / rating widget
 
