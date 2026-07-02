@@ -34,10 +34,15 @@
   {%- else -%}
     <span class="trust-row__text">{{ block_settings.text }}</span>
   {%- endif -%}
-  {%- if block_settings.show_flag and block_settings.flag_image != blank -%}
-    <span class="trust-row__flag">
-      {{ block_settings.flag_image | image_url: width: 60 | image_tag: alt: '', loading: 'lazy' }}
-    </span>
+  {%- if block_settings.show_flag -%}
+    {%- if block_settings.flag_image != blank -%}
+      <span class="trust-row__flag">
+        {{ block_settings.flag_image | image_url: width: 60 | image_tag: alt: '', loading: 'lazy' }}
+      </span>
+    {%- endif -%}
+    {%- if block_settings.flag_text != blank -%}
+      <span class="trust-row__flag-text">{{ block_settings.flag_text }}</span>
+    {%- endif -%}
   {%- endif -%}
 </div>
 
@@ -76,6 +81,11 @@
     width: 24px;
     height: auto;
     border-radius: 2px;
+  }
+
+  .trust-row__flag-text {
+    font-size: 16px;
+    color: inherit;
   }
 {% endstylesheet %}
 
@@ -116,6 +126,13 @@
       "id": "flag_image",
       "label": "Flag image",
       "info": "Shown after the text, e.g. a country flag. Upload a small flag image."
+    },
+    {
+      "type": "text",
+      "id": "flag_text",
+      "label": "Text after flag",
+      "info": "Optional text shown next to the flag, e.g. \"United States\".",
+      "visible_if": "{{ block.settings.show_flag }}"
     },
     {
       "type": "text",
