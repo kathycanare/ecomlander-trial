@@ -23,7 +23,11 @@
 
 <subscription-toggle-component
   class="subscription-toggle spacing-style"
-  style="{% render 'spacing-style', settings: block_settings %}"
+  style="
+    {% render 'spacing-style', settings: block_settings %}
+    --subscription-toggle-background: {{ block_settings.background_color }};
+    --subscription-toggle-border: {{ block_settings.border_color }};
+  "
   data-selling-plan-id="{{ selling_plan_id }}"
   {{ block.shopify_attributes }}
 >
@@ -45,7 +49,8 @@
     display: flex;
     flex-direction: column;
     gap: var(--gap-3xs, 0.25rem);
-    border: 1px dashed var(--color-border);
+    background: var(--subscription-toggle-background, transparent);
+    border: 1px dashed var(--subscription-toggle-border, var(--color-border));
     border-radius: var(--style-border-radius-xs, 6px);
     padding: var(--padding-md);
   }
@@ -84,6 +89,22 @@
     {
       "type": "paragraph",
       "content": "Requires a subscription selling plan on this product (e.g. via the Shopify Subscriptions app) to actually apply a discount. Otherwise the checkbox renders disabled."
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#E7F5EF"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#0F3D2E"
     },
     {
       "type": "header",
