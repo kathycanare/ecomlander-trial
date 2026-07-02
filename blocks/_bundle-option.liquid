@@ -164,6 +164,15 @@
     background: var(--bundle-selected-background, transparent);
   }
 
+  .bundle-option:has(.bundle-option__input:checked) .bundle-option__banner {
+    margin: -2.5px -2.5px 0 -2.5px;
+    width: calc(100% + 5px);
+    box-sizing: border-box;
+    border: 2.5px solid #095946;
+    border-bottom: 0;
+    border-radius: 8px 8px 0 0;
+  }
+
   .bundle-option:has(.bundle-option__input:focus-visible) {
     outline: var(--focus-outline-width) solid currentcolor;
     outline-offset: var(--focus-outline-offset);
