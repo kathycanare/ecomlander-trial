@@ -3,7 +3,7 @@
 -%}
 
 <div
-  class="custom-accordion spacing-style"
+  class="custom-accordion spacing-style custom-accordion--{{ block_settings.visibility }}"
   style="
     {% render 'spacing-style', settings: block_settings %}
     --accordion-border: {{ block_settings.border_color }};
@@ -25,6 +25,18 @@
     flex-direction: column;
     gap: var(--accordion-gap, 12px);
   }
+
+  @media screen and (max-width: 749px) {
+    .custom-accordion--desktop {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .custom-accordion--mobile {
+      display: none;
+    }
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -37,6 +49,17 @@
     }
   ],
   "settings": [
+    {
+      "type": "select",
+      "id": "visibility",
+      "label": "Show on",
+      "options": [
+        { "value": "both", "label": "Desktop & mobile" },
+        { "value": "desktop", "label": "Desktop only" },
+        { "value": "mobile", "label": "Mobile only" }
+      ],
+      "default": "both"
+    },
     {
       "type": "header",
       "content": "Colors"
