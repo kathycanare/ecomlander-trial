@@ -88,4 +88,42 @@
   .product-media-container--zoomable.product-media-container--image {
     cursor: zoom-in;
   }
+  
+  @media screen and (min-width: 750px) {
+    media-gallery slideshow-slide.product-media-container {
+      max-height: 540px; /* tweak this number to taste */
+    }
+    media-gallery slideshow-slide.product-media-container .product-media {
+      aspect-ratio: auto;
+      height: 540px;
+    }
+    media-gallery slideshow-slide.product-media-container
+      :is(.product-media__image, img, .deferred-media__poster-image) {
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .media-gallery--carousel slideshow-arrows .slideshow-control {
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: 2px solid #0f3d2e;   /* brand green — change to match Figma */
+    border-radius: 50%;
+    color: #0f3d2e;
+    background: rgba(255, 255, 255, 0.85);
+    mix-blend-mode: normal;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .media-gallery--carousel slideshow-arrows .slideshow-control:hover {
+    background: #fff;
+  }
+
+  .media-gallery--carousel slideshow-arrows .slideshow-control svg {
+    width: 20px;
+    height: 20px;
+  }
 {% endstylesheet %}
