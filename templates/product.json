@@ -717,6 +717,12 @@
                   "type": "add-to-cart",
                   "static": true,
                   "settings": {
+                    "enable_custom_cta": true,
+                    "custom_cta_text": "ADD TO CART",
+                    "cta_background_color": "#044435",
+                    "cta_text_color": "#ffffff",
+                    "compare_pill_background_color": "#032D23",
+                    "compare_pill_text_color": "#D7FFF5",
                     "style_class": "button-custom",
                     "custom_button_background": "#0f3d2e",
                     "custom_button_text": "#ffffff",
