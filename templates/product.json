@@ -521,8 +521,8 @@
                 "option_1": {
                   "type": "_bundle-option",
                   "settings": {
-                    "option_value_name": "Buy 1",
-                    "display_label": "",
+                    "option_value_name": "1 Bottle",
+                    "display_label": "Buy 1 Bottle",
                     "label_highlight": "",
                     "unit_count": 1,
                     "unit_label": "bottle",
@@ -535,7 +535,7 @@
                   "type": "_bundle-option",
                   "settings": {
                     "option_value_name": "2+1",
-                    "display_label": "",
+                    "display_label": "Buy 2, Get 1 Free",
                     "label_highlight": "",
                     "unit_count": 3,
                     "unit_label": "bottle",
@@ -548,7 +548,7 @@
                   "type": "_bundle-option",
                   "settings": {
                     "option_value_name": "3+2",
-                    "display_label": "",
+                    "display_label": "Buy 3, Get 2 Free",
                     "label_highlight": "",
                     "unit_count": 5,
                     "unit_label": "bottle",
