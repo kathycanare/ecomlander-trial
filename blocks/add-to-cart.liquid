@@ -23,7 +23,7 @@
       --custom-cta-background: {{ block.settings.cta_background_color }};
       --custom-cta-text: {{ block.settings.cta_text_color }};
       --custom-cta-compare-bg: {{ block.settings.compare_pill_background_color }};
-      --custom-cta-compare-text: {{ block.settings.compare_pill_text_color }};
+      --custom-cta-price-color: {{ block.settings.price_color }};
       --add-to-cart-font-case: {{ settings.button_text_case }};
     "
   >
@@ -66,45 +66,44 @@
         return moneyFormat.replace(/\{\{\s*amount\s*\}\}/, amount);
       }
 
-      picker.addEventListener('on:variant:change', () => {});
+      let productData = null;
+      async function getProductData() {
+        if (productData) return productData;
+        const res = await fetch({{ product.url | json }} + '.js');
+        productData = await res.json();
+        return productData;
+      }
 
-      picker.addEventListener('product:selected', () => {});
-
-      picker.addEventListener('ProductSelect', () => {});
-
-      picker.addEventListener('change', async (event) => {
-        const input = event.target.closest('input[data-variant-id]');
-        if (!input) return;
-
+      async function updatePrice(variantId) {
         const priceEl = wrapper.querySelector('[data-cta-price]');
         const compareEl = wrapper.querySelector('[data-cta-compare]');
         const button = wrapper.querySelector('.custom-cta-button');
+        try {
+          const data = await getProductData();
+          const variant = data.variants.find(v => String(v.id) === String(variantId));
+          if (!variant) return;
 
-        setTimeout(async () => {
-          try {
-            const variantId = input.dataset.variantId;
-            const productUrl = {{ product.url | json }};
-            const res = await fetch(`${productUrl}.js`);
-            const data = await res.json();
-            const variant = data.variants.find(v => String(v.id) === String(variantId));
-            if (!variant) return;
+          if (priceEl) priceEl.textContent = formatMoney(variant.price);
 
-            if (priceEl) priceEl.textContent = formatMoney(variant.price);
-
-            if (compareEl) {
-              if (variant.compare_at_price && variant.compare_at_price > variant.price) {
-                compareEl.textContent = formatMoney(variant.compare_at_price);
-                compareEl.hidden = false;
-              } else {
-                compareEl.hidden = true;
-              }
+          if (compareEl) {
+            if (variant.compare_at_price && variant.compare_at_price > variant.price) {
+              compareEl.textContent = formatMoney(variant.compare_at_price);
+              compareEl.hidden = false;
+            } else {
+              compareEl.hidden = true;
             }
-
-            if (button) button.disabled = !variant.available;
-          } catch (e) {
-            console.warn('CTA price update failed', e);
           }
-        }, 50);
+          if (button) button.disabled = !variant.available;
+        } catch (e) {
+          console.warn('CTA price update failed', e);
+        }
+      }
+
+      document.addEventListener('change', (event) => {
+        const input = event.target.closest('input[data-variant-id]');
+        if (!input) return;
+        if (!input.closest('variant-picker')) return;
+        updatePrice(input.dataset.variantId);
       });
     })();
   </script>
@@ -134,7 +133,7 @@
     border: none;
     cursor: pointer;
     padding: 1rem 1.5rem;
-    border-radius: var(--style-border-radius-inputs, 8px);
+    border-radius: 10px;
     background: var(--custom-cta-background, #0F3D2E);
     color: var(--custom-cta-text, #ffffff);
     font-weight: 700;
@@ -162,15 +161,16 @@
   }
 
   .custom-cta-button__price {
-    color: var(--custom-cta-text, #ffffff);
+    color: var(--custom-cta-price-color, #ffffff);
     font-weight: 700;
   }
 
   .custom-cta-button__compare {
-    color: var(--custom-cta-compare-text, rgba(255, 255, 255, 0.6));
+    color: var(--custom-cta-price-color, #ffffff);
     text-decoration: line-through;
     font-weight: 400;
     font-size: 0.9em;
+    opacity: 0.6;
   }
 
   .custom-cta-button__compare[hidden] {
@@ -220,9 +220,9 @@
     },
     {
       "type": "color",
-      "id": "compare_pill_text_color",
-      "label": "Compare price text color",
-      "default": "#CCCCCC",
+      "id": "price_color",
+      "label": "Price & compare price color",
+      "default": "#FFFFFF",
       "visible_if": "{{ block.settings.enable_custom_cta }}"
     },
     {
