@@ -791,6 +791,7 @@
                   "type": "trust-row",
                   "settings": {
                     "icon": "truck",
+                    "image_upload": "shopify://shop_images/Untitled_design_-_2026-07-03T061348.557.png",
                     "text": "Fast, tracked shipping to United States",
                     "link": "",
                     "open_in_new_tab": false,
@@ -805,6 +806,7 @@
                   "type": "trust-row",
                   "settings": {
                     "icon": "lock",
+                    "image_upload": "shopify://shop_images/Untitled_design_-_2026-07-03T061634.541.png",
                     "text": "60 day money back guarantee",
                     "link": "",
                     "open_in_new_tab": false,
@@ -819,8 +821,9 @@
                   "type": "trust-row",
                   "settings": {
                     "icon": "clipboard",
+                    "image_upload": "shopify://shop_images/Untitled_design_-_2026-07-03T061819.557.png",
                     "text": "Full Ingredients List",
-                    "link": "",
+                    "link": "#",
                     "open_in_new_tab": false,
                     "padding-block-start": 4,
                     "padding-block-end": 4,
