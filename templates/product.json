@@ -913,12 +913,26 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {}
+                },
+                "video_testimonial_card_J36BpU": {
+                  "type": "_video-testimonial-card",
+                  "name": "Testimonial video",
+                  "settings": {
+                    "source": "uploaded",
+                    "customer_name": "",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 }
               },
               "block_order": [
                 "video_1",
                 "video_2",
-                "video_3"
+                "video_3",
+                "video_testimonial_card_J36BpU"
               ]
             }
           },
