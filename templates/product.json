@@ -48,7 +48,7 @@
             "thumbnail_radius": 8,
             "badge_icon": "star",
             "badge_text": "",
-            "badge_background_color": "#b3261e",
+            "badge_background_color": "#C13B3B",
             "badge_text_color": "#ffffff",
             "aspect_ratio": "adapt",
             "constrain_to_viewport": true,
