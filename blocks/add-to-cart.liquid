@@ -1,5 +1,3 @@
-
-
 {%- doc -%}
   This block is used to display the add to cart button.
   Intended for product-form.liquid block.
@@ -12,28 +10,221 @@
   assign scoped_class = block.settings.style_class | append: '--' | append: block.id
   assign class = 'add-to-cart-button ' | append: block.settings.style_class | append: ' ' | append: scoped_class
   assign id = 'BuyButtons-ProductSubmitButton-' | append: block.id
+  assign product = closest.product
+  assign current_variant = product.selected_or_first_available_variant
 %}
 {% render 'button-custom-styles', block_settings: block.settings, block_id: block.id %}
 
-<span
-  {{ block.shopify_attributes }}
-  style="--add-to-cart-font-case: {{ settings.button_text_case }};"
->
-  {% render 'add-to-cart-button',
-    id: id,
-    class: class,
-    can_add_to_cart: can_add_to_cart,
-    product: closest.product,
-    add_to_cart_text: add_to_cart_text,
-    data_testid: 'standalone-add-to-cart'
-  %}
-</span>
+{%- if block.settings.enable_custom_cta -%}
+  <span
+    {{ block.shopify_attributes }}
+    class="custom-cta-wrapper"
+    style="
+      --custom-cta-background: {{ block.settings.cta_background_color }};
+      --custom-cta-text: {{ block.settings.cta_text_color }};
+      --custom-cta-compare-bg: {{ block.settings.compare_pill_background_color }};
+      --custom-cta-compare-text: {{ block.settings.compare_pill_text_color }};
+      --add-to-cart-font-case: {{ settings.button_text_case }};
+    "
+  >
+    <button
+      type="submit"
+      id="{{ id }}"
+      class="custom-cta-button"
+      name="add"
+      {% unless current_variant.available %}disabled{% endunless %}
+      data-testid="standalone-add-to-cart"
+    >
+      <span class="custom-cta-button__text">{{ block.settings.custom_cta_text | default: 'Add to Cart' }}</span>
+      <span class="custom-cta-button__prices" data-cta-prices>
+        <span class="custom-cta-button__price" data-cta-price>
+          {%- render 'format-price', price: current_variant.price -%}
+        </span>
+        {%- if current_variant.compare_at_price > current_variant.price -%}
+          <span class="custom-cta-button__compare" data-cta-compare>
+            {%- render 'format-price', price: current_variant.compare_at_price -%}
+          </span>
+        {%- else -%}
+          <span class="custom-cta-button__compare" data-cta-compare hidden></span>
+        {%- endif -%}
+      </span>
+    </button>
+  </span>
+
+  <script type="module">
+    (function () {
+      const wrapper = document.currentScript.previousElementSibling;
+      if (!wrapper) return;
+
+      const picker = document.querySelector('variant-picker[data-product-id="{{ product.id }}"]') || document.querySelector('variant-picker');
+      if (!picker) return;
+
+      const moneyFormat = {{ shop.money_format | json }};
+
+      function formatMoney(cents) {
+        const amount = (cents / 100).toFixed(2);
+        return moneyFormat.replace(/\{\{\s*amount\s*\}\}/, amount);
+      }
+
+      picker.addEventListener('on:variant:change', () => {});
+
+      picker.addEventListener('product:selected', () => {});
+
+      picker.addEventListener('ProductSelect', () => {});
+
+      picker.addEventListener('change', async (event) => {
+        const input = event.target.closest('input[data-variant-id]');
+        if (!input) return;
+
+        const priceEl = wrapper.querySelector('[data-cta-price]');
+        const compareEl = wrapper.querySelector('[data-cta-compare]');
+        const button = wrapper.querySelector('.custom-cta-button');
+
+        setTimeout(async () => {
+          try {
+            const variantId = input.dataset.variantId;
+            const productUrl = {{ product.url | json }};
+            const res = await fetch(`${productUrl}.js`);
+            const data = await res.json();
+            const variant = data.variants.find(v => String(v.id) === String(variantId));
+            if (!variant) return;
+
+            if (priceEl) priceEl.textContent = formatMoney(variant.price);
+
+            if (compareEl) {
+              if (variant.compare_at_price && variant.compare_at_price > variant.price) {
+                compareEl.textContent = formatMoney(variant.compare_at_price);
+                compareEl.hidden = false;
+              } else {
+                compareEl.hidden = true;
+              }
+            }
+
+            if (button) button.disabled = !variant.available;
+          } catch (e) {
+            console.warn('CTA price update failed', e);
+          }
+        }, 50);
+      });
+    })();
+  </script>
+{%- else -%}
+  <span
+    {{ block.shopify_attributes }}
+    style="--add-to-cart-font-case: {{ settings.button_text_case }};"
+  >
+    {% render 'add-to-cart-button',
+      id: id,
+      class: class,
+      can_add_to_cart: can_add_to_cart,
+      product: closest.product,
+      add_to_cart_text: add_to_cart_text,
+      data_testid: 'standalone-add-to-cart'
+    %}
+  </span>
+{%- endif -%}
+
+{% stylesheet %}
+  .custom-cta-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    padding: 1rem 1.5rem;
+    border-radius: var(--style-border-radius-inputs, 8px);
+    background: var(--custom-cta-background, #0F3D2E);
+    color: var(--custom-cta-text, #ffffff);
+    font-weight: 700;
+    font-size: var(--font-size--md, 1rem);
+    text-transform: var(--add-to-cart-font-case, uppercase);
+    transition: opacity 0.2s ease;
+  }
+
+  .custom-cta-button:hover {
+    opacity: 0.9;
+  }
+
+  .custom-cta-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .custom-cta-button__prices {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--custom-cta-compare-bg, rgba(0, 0, 0, 0.2));
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+  }
+
+  .custom-cta-button__price {
+    color: var(--custom-cta-text, #ffffff);
+    font-weight: 700;
+  }
+
+  .custom-cta-button__compare {
+    color: var(--custom-cta-compare-text, rgba(255, 255, 255, 0.6));
+    text-decoration: line-through;
+    font-weight: 400;
+    font-size: 0.9em;
+  }
+
+  .custom-cta-button__compare[hidden] {
+    display: none;
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
   "name": "t:names.add_to_cart",
   "tag": null,
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_custom_cta",
+      "label": "Use custom CTA with price",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "custom_cta_text",
+      "label": "Add to cart text",
+      "default": "Add to Cart",
+      "visible_if": "{{ block.settings.enable_custom_cta }}"
+    },
+    {
+      "type": "color",
+      "id": "cta_background_color",
+      "label": "Button background",
+      "default": "#0F3D2E",
+      "visible_if": "{{ block.settings.enable_custom_cta }}"
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "Add to cart text color",
+      "default": "#FFFFFF",
+      "visible_if": "{{ block.settings.enable_custom_cta }}"
+    },
+    {
+      "type": "color",
+      "id": "compare_pill_background_color",
+      "label": "Compare price background",
+      "default": "#000000",
+      "alpha": true,
+      "visible_if": "{{ block.settings.enable_custom_cta }}"
+    },
+    {
+      "type": "color",
+      "id": "compare_pill_text_color",
+      "label": "Compare price text color",
+      "default": "#CCCCCC",
+      "visible_if": "{{ block.settings.enable_custom_cta }}"
+    },
     {
       "type": "select",
       "id": "style_class",
@@ -53,33 +244,34 @@
         }
       ],
       "default": "button-secondary",
-      "info": "t:info.edit_button_style_in_theme_settings"
+      "info": "t:info.edit_button_style_in_theme_settings",
+      "visible_if": "{{ block.settings.enable_custom_cta == false }}"
     },
     {
       "type": "header",
       "content": "t:content.button_colors",
-      "visible_if": "{{ block.settings.style_class == \"button-custom\" }}"
+      "visible_if": "{{ block.settings.style_class == \"button-custom\" and block.settings.enable_custom_cta == false }}"
     },
     {
       "type": "color",
       "id": "custom_button_background",
       "label": "t:settings.background",
       "alpha": true,
-      "visible_if": "{{ block.settings.style_class == 'button-custom' }}"
+      "visible_if": "{{ block.settings.style_class == 'button-custom' and block.settings.enable_custom_cta == false }}"
     },
     {
       "type": "color",
       "id": "custom_button_text",
       "label": "t:settings.text",
       "alpha": true,
-      "visible_if": "{{ block.settings.style_class == 'button-custom' }}"
+      "visible_if": "{{ block.settings.style_class == 'button-custom' and block.settings.enable_custom_cta == false }}"
     },
     {
       "type": "color",
       "id": "custom_button_border",
       "label": "t:settings.borders",
       "alpha": true,
-      "visible_if": "{{ block.settings.style_class == 'button-custom' }}"
+      "visible_if": "{{ block.settings.style_class == 'button-custom' and block.settings.enable_custom_cta == false }}"
     }
   ]
 }
