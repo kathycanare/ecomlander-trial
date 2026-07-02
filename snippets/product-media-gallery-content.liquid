@@ -1052,14 +1052,16 @@
     padding-inline: 0;
     opacity: 1;
     pointer-events: auto;
-    background-color: #ffffff;
-    border: 1.5px solid #1a6b52;
-    border-radius: 50%;
-    color: #1a6b52;
+    background-color: #ffffff !important;
+    border: 1.5px solid #095946 !important;
+    border-radius: 50% !important;
+    color: #095946 !important;
+    box-shadow: none !important;
+    outline: none !important;
   }
 
   .media-gallery--carousel slideshow-arrows .slideshow-control svg {
-    color: #1a6b52;
+    color: #095946 !important;
   }
 
   @media screen and (max-width: 749px) {
@@ -1097,5 +1099,12 @@
     object-fit: cover !important;
     width: 100% !important;
     height: 100% !important;
+  }
+
+  .product-media-gallery-host slideshow-controls[thumbnails] {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
   }
 {% endstylesheet %}
