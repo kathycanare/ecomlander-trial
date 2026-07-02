@@ -99,12 +99,29 @@
         }
       }
 
+      function getCheckedVariantId() {
+        const checked = document.querySelector('variant-picker input[data-variant-id][data-current-checked="true"]')
+          || document.querySelector('variant-picker input[data-variant-id]:checked');
+        return checked ? checked.dataset.variantId : null;
+      }
+
       document.addEventListener('change', (event) => {
         const input = event.target.closest('input[data-variant-id]');
-        if (!input) return;
-        if (!input.closest('variant-picker')) return;
-        updatePrice(input.dataset.variantId);
+        if (input && input.closest('variant-picker')) {
+          updatePrice(input.dataset.variantId);
+        }
+      }, true);
+
+      document.addEventListener('click', (event) => {
+        if (!event.target.closest('variant-picker')) return;
+        setTimeout(() => {
+          const id = getCheckedVariantId();
+          if (id) updatePrice(id);
+        }, 150);
       });
+
+      const initialId = getCheckedVariantId();
+      if (initialId) updatePrice(initialId);
     })();
   </script>
 {%- else -%}
