@@ -85,13 +85,15 @@
     transform: scale(1.4) !important;
   }
 
-  slideshow-arrows .slideshow-control:is([disabled], [aria-disabled='true'], .slideshow-control--disabled) {
-    border-color: #a8d5c5 !important;
+  .product-media-gallery-host slideshow-arrows .slideshow-control[disabled] {
+    background-color: #ffffff !important;
+    border: 1.5px solid #a8d5c5 !important;
     color: #a8d5c5 !important;
+    opacity: 1 !important;
     cursor: default !important;
   }
 
-  slideshow-arrows .slideshow-control:is([disabled], [aria-disabled='true'], .slideshow-control--disabled) svg {
+  .product-media-gallery-host slideshow-arrows .slideshow-control[disabled] svg {
     color: #a8d5c5 !important;
     fill: #a8d5c5 !important;
   }
