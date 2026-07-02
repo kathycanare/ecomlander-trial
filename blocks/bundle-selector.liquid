@@ -42,11 +42,12 @@
     --bundle-save-text: {{ block_settings.save_badge_text_color }};
     --bundle-ribbon-background: {{ block_settings.best_value_background_color }};
     --bundle-ribbon-text: {{ block_settings.best_value_text_color }};
+    --bundle-price-color: {{ block_settings.highlight_color }};
   "
   {{ block.shopify_attributes }}
 >
   {%- if has_valid_option and block_settings.heading != blank -%}
-    <p class="bundle-selector__heading {{ block_settings.heading_preset }}">{{ block_settings.heading }}</p>
+    <p class="bundle-selector__heading" style="font-size: {{ block_settings.heading_size }}px;">{{ block_settings.heading }}</p>
   {%- endif -%}
 
   {%- if has_valid_option -%}
@@ -90,7 +91,7 @@
 {% stylesheet %}
   .bundle-selector__heading {
     margin: 0 0 var(--margin-sm, 0.75rem);
-    font-weight: 600;
+    font-weight: 700;
   }
 
   .bundle-selector__fieldset {
@@ -127,15 +128,14 @@
       "default": "Choose your quantity"
     },
     {
-      "type": "select",
-      "id": "heading_preset",
+      "type": "range",
+      "id": "heading_size",
       "label": "Heading size",
-      "options": [
-        { "value": "h6", "label": "Small" },
-        { "value": "h5", "label": "Medium" },
-        { "value": "h4", "label": "Large" }
-      ],
-      "default": "h5"
+      "min": 14,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "default": 28
     },
     {
       "type": "header",
@@ -146,6 +146,12 @@
       "id": "selected_background_color",
       "label": "Selected tier background",
       "default": "#E7F5EF"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Label highlight color",
+      "default": "#1c7a4d"
     },
     {
       "type": "color",
