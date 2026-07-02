@@ -474,8 +474,7 @@
                   "type": "feature-checkmark",
                   "settings": {
                     "text": "Ease everyday stiffness",
-                    "checkmark_color": "#0f3d2e",
-                    "badge_color": "#189074",
+                    "checkmark_image": "shopify://shop_images/Untitled_design_-_2026-07-03T045232.699.png",
                     "padding-block-start": 4,
                     "padding-block-end": 4,
                     "padding-inline-start": 0,
@@ -487,8 +486,7 @@
                   "type": "feature-checkmark",
                   "settings": {
                     "text": "Improve daily mobility",
-                    "checkmark_color": "#0f3d2e",
-                    "badge_color": "#189074",
+                    "checkmark_image": "shopify://shop_images/Untitled_design_-_2026-07-03T045232.699.png",
                     "padding-block-start": 4,
                     "padding-block-end": 4,
                     "padding-inline-start": 0,
@@ -500,8 +498,7 @@
                   "type": "feature-checkmark",
                   "settings": {
                     "text": "Support joint comfort",
-                    "checkmark_color": "#0f3d2e",
-                    "badge_color": "#189074",
+                    "checkmark_image": "shopify://shop_images/Untitled_design_-_2026-07-03T045232.699.png",
                     "padding-block-start": 4,
                     "padding-block-end": 4,
                     "padding-inline-start": 0,
@@ -513,8 +510,7 @@
                   "type": "feature-checkmark",
                   "settings": {
                     "text": "Feel more flexible",
-                    "checkmark_color": "#0f3d2e",
-                    "badge_color": "#189074",
+                    "checkmark_image": "shopify://shop_images/Untitled_design_-_2026-07-03T045232.699.png",
                     "padding-block-start": 4,
                     "padding-block-end": 4,
                     "padding-inline-start": 0,
