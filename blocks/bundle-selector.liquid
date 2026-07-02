@@ -43,6 +43,7 @@
     --bundle-ribbon-background: {{ block_settings.best_value_background_color }};
     --bundle-ribbon-text: {{ block_settings.best_value_text_color }};
     --bundle-price-color: {{ block_settings.highlight_color }};
+    {% if block_settings.heading_color != blank %}--bundle-heading-color: {{ block_settings.heading_color }};{% endif %}
   "
   {{ block.shopify_attributes }}
 >
@@ -92,6 +93,7 @@
   .bundle-selector__heading {
     margin: 0 0 var(--margin-sm, 0.75rem);
     font-weight: 700;
+    color: var(--bundle-heading-color, inherit);
   }
 
   .bundle-selector__fieldset {
@@ -136,6 +138,11 @@
       "step": 1,
       "unit": "px",
       "default": 28
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color"
     },
     {
       "type": "header",
