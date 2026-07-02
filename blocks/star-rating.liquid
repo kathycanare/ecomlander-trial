@@ -57,7 +57,12 @@
     display: flex;
     align-items: center;
     gap: var(--gap-2xs, 0.5rem);
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+
+  .star-rating__text {
+    white-space: nowrap;
   }
 
   .star-rating__stars {
@@ -66,15 +71,16 @@
   }
 
   .star-rating__star {
-    width: var(--star-rating-size, 18px);
-    height: var(--star-rating-size, 18px);
+    width: clamp(12px, 3.5vw, var(--star-rating-size, 18px));
+    height: clamp(12px, 3.5vw, var(--star-rating-size, 18px));
     fill: var(--star-rating-color, #E8A33D);
     flex-shrink: 0;
   }
 
   .star-rating__text {
     color: var(--star-rating-text-color, inherit);
-    font-size: var(--star-rating-text-size, 15px);
+    font-size: clamp(12px, 3.2vw, var(--star-rating-text-size, 15px));
+    white-space: nowrap;
   }
 {% endstylesheet %}
 
