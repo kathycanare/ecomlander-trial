@@ -16,12 +16,13 @@
   {{ block.shopify_attributes }}
 >
   <div class="video-testimonial__media">
+    {%- assign poster = block_settings.thumbnail_image | default: block_settings.cover_image -%}
     {%- if block_settings.source == 'uploaded' -%}
       {% render 'video',
         video: block_settings.video,
         video_class: 'video-testimonial__video',
         video_loop: false,
-        video_preview_image: block_settings.video.preview_image
+        video_preview_image: poster | default: block_settings.video.preview_image
       %}
     {%- else -%}
       {% render 'video',
@@ -30,7 +31,7 @@
         video_class: 'video-testimonial__video',
         video_type: block_settings.video_url.type,
         video_alt: block_settings.customer_name,
-        video_preview_image: block_settings.cover_image
+        video_preview_image: poster
       %}
     {%- endif -%}
   </div>
@@ -77,6 +78,27 @@
     z-index: var(--layer-raised);
     pointer-events: none;
   }
+
+  .video-testimonial .deferred-media__poster-button,
+  .video-testimonial [class*='play'] {
+    width: 56px !important;
+    height: 56px !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-radius: 50% !important;
+    border: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .video-testimonial .deferred-media__poster-button svg,
+  .video-testimonial [class*='play'] svg {
+    width: 20px !important;
+    height: 20px !important;
+    color: var(--video-testimonial-play-color, #095946) !important;
+    fill: var(--video-testimonial-play-color, #095946) !important;
+    margin-left: 2px;
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -113,6 +135,12 @@
       "label": "Cover image",
       "visible_if": "{{ block.settings.source == 'url' }}",
       "info": "Shown before the video plays."
+    },
+    {
+      "type": "image_picker",
+      "id": "thumbnail_image",
+      "label": "Thumbnail image",
+      "info": "Custom poster shown before the video plays. Works for both uploaded and URL videos."
     },
     {
       "type": "text",
