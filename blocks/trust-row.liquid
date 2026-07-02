@@ -34,6 +34,11 @@
   {%- else -%}
     <span class="trust-row__text">{{ block_settings.text }}</span>
   {%- endif -%}
+  {%- if block_settings.show_flag and block_settings.flag_image != blank -%}
+    <span class="trust-row__flag">
+      {{ block_settings.flag_image | image_url: width: 60 | image_tag: alt: '', loading: 'lazy' }}
+    </span>
+  {%- endif -%}
 </div>
 
 {% stylesheet %}
@@ -59,6 +64,18 @@
 
   .trust-row__text--link {
     text-decoration: underline;
+  }
+
+  .trust-row__flag {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .trust-row__flag img {
+    width: 24px;
+    height: auto;
+    border-radius: 2px;
   }
 {% endstylesheet %}
 
@@ -87,6 +104,18 @@
       "type": "image_picker",
       "id": "image_upload",
       "label": "Custom icon image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_flag",
+      "label": "Show flag after text",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "flag_image",
+      "label": "Flag image",
+      "info": "Shown after the text, e.g. a country flag. Upload a small flag image."
     },
     {
       "type": "text",
