@@ -72,28 +72,27 @@
   }
 
   .subscription-toggle .checkbox__input {
-    accent-color: var(--subscription-toggle-check-color);
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 8px !important;
+    border: 2px solid var(--subscription-toggle-check-color) !important;
+    flex-shrink: 0;
   }
 
   .subscription-toggle .checkbox__input:checked {
     background: var(--subscription-toggle-check-color) !important;
     background-color: var(--subscription-toggle-check-color) !important;
     border-color: var(--subscription-toggle-check-color) !important;
-    color: var(--subscription-toggle-check-color) !important;
-  }
-
-  .subscription-toggle .checkbox__input:checked::before,
-  .subscription-toggle .checkbox__input:checked::after {
-    background: var(--subscription-toggle-check-color) !important;
-    background-color: var(--subscription-toggle-check-color) !important;
-    border-color: var(--subscription-toggle-check-color) !important;
-    color: var(--subscription-toggle-check-color) !important;
   }
 
   .subscription-toggle .checkbox__label svg,
   .subscription-toggle .checkbox__label svg path {
-    stroke: var(--subscription-toggle-check-color) !important;
-    color: var(--subscription-toggle-check-color) !important;
+    stroke: #ffffff !important;
+    color: #ffffff !important;
+  }
+
+  .subscription-toggle .checkbox__label {
+    gap: 0.75rem;
   }
 
   .subscription-toggle__description {
