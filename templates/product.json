@@ -258,7 +258,7 @@
           "type": "_product-details",
           "static": true,
           "settings": {
-            "width": "fit-content",
+            "width": "fill",
             "custom_width": 80,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
@@ -352,7 +352,7 @@
                   "name": "Product title",
                   "settings": {
                     "text": "<h2>{{ closest.product.title }}</h2>",
-                    "width": "fit-content",
+                    "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
                     "type_preset": "h2",
