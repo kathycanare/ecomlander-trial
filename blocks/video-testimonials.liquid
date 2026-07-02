@@ -90,18 +90,37 @@
     controls.querySelector('[data-vt-next]')?.addEventListener('click', () => slideshow.next?.());
     const perPage = parseInt(controls.dataset.vtPerPage, 10) || 1;
 
+    function currentPerPage() {
+      return window.matchMedia('(max-width: 749px)').matches ? 1 : perPage;
+    }
+
     dots.forEach((dot) => {
       dot.addEventListener('click', () => {
         const page = parseInt(dot.dataset.vtDot, 10);
-        slideshow.select?.(page * perPage);
+        slideshow.select?.(page * currentPerPage());
       });
     });
 
-    slideshow.addEventListener('slideshow:select', (e) => {
-      const idx = e.detail?.index ?? 0;
-      const activePage = Math.floor(idx / perPage);
+    function syncActiveDot() {
+      const idx = slideshow.current ?? 0;
+      const activePage = Math.floor(idx / currentPerPage());
       dots.forEach((d, i) => d.classList.toggle('is-active', i === activePage));
+    }
+
+    ['slideshow:select', 'on:slideshow:select', 'slideshowselect', 'change', 'scroll'].forEach((evt) => {
+      slideshow.addEventListener(evt, syncActiveDot);
     });
+
+    const scroller = slideshow.querySelector('[ref="scroller"], slideshow-slides');
+    if (scroller) {
+      let raf;
+      scroller.addEventListener('scroll', () => {
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(syncActiveDot);
+      }, { passive: true });
+    }
+
+    syncActiveDot();
   })();
 </script>
 
