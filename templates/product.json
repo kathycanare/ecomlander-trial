@@ -46,7 +46,7 @@
       "name": "Scrolling marquee",
       "settings": {
         "scroll_speed": 40,
-        "item_gap": 40,
+        "item_gap": 16,
         "font_size": 16,
         "padding_vertical": 10,
         "background_color": "#f6f6f6",
