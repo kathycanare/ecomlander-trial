@@ -148,8 +148,8 @@
     flex-direction: column;
     width: 100%;
     position: relative;
-    border: 1.5px solid #ededed;
-    border-radius: var(--style-border-radius-xs, 10px);
+    border: 2.5px solid #ededed;
+    border-radius: 16px;
     /* visible (not clip) so the Best Value pill can sit above the top edge */
     overflow: visible;
     cursor: pointer;
@@ -160,6 +160,7 @@
 
   .bundle-option:has(.bundle-option__input:checked) {
     border-color: #095946;
+    border-width: 2.5px;
     background: var(--bundle-selected-background, transparent);
   }
 
@@ -199,7 +200,7 @@
     font-weight: 600;
     text-align: center;
     padding: 0.6rem var(--padding-sm);
-    border-radius: var(--style-border-radius-xs, 10px) var(--style-border-radius-xs, 10px) 0 0;
+    border-radius: 14px 14px 0 0;
   }
 
   .bundle-option__ribbon {
@@ -232,6 +233,12 @@
     height: 5rem;
   }
 
+  .bundle-option__media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .bundle-option__media img {
     display: block;
     width: 100%;
@@ -242,8 +249,9 @@
   /* Save badge overlays the bottom-left of the product image */
   .bundle-option__save {
     position: absolute;
-    left: -0.25rem;
-    bottom: -0.25rem;
+    left: 50%;
+    bottom: -0.5rem;
+    transform: translateX(-50%);
     background: var(--bundle-save-background, #b3261e);
     color: var(--bundle-save-text, #fff);
     font-size: var(--font-size--xs, 0.72rem);
@@ -341,10 +349,10 @@
       "default": "bottle"
     },
     {
-      "type": "text",
+      "type": "inline_richtext",
       "id": "banner_text",
       "label": "Banner text",
-      "info": "Optional marketing banner shown above this tier, e.g. a social-proof claim. Leave blank to hide."
+      "info": "Optional marketing banner shown above this tier. Use the bold button to emphasize part of it. Leave blank to hide."
     },
     {
       "type": "checkbox",
