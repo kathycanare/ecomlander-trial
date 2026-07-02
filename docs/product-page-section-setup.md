@@ -44,10 +44,19 @@ Two metafield definitions drive per-product content without touching the theme:
 | Metafield | Type | Used for |
 |---|---|---|
 | `custom.badge_text` | Single line text | The ribbon over the main product image (e.g. "Bestseller"). Blank = hidden. Can be overridden per-block in the theme editor. |
-| `custom.ingredients` | Multi-line text / Rich text | Populates the "Ingredients & Nutrition" accordion row automatically. |
+| `custom.ingredients` | Multi-line text / Rich text | Intended for the "Ingredients & Nutrition" accordion row. |
 
-Create these under **Settings → Custom data → Products** in Shopify Admin, then
-fill them in per product.
+Create these under **Settings → Custom data → Products** in Shopify Admin first.
+
+- `custom.badge_text` is already wired up in the code — once the metafield exists
+  and has a value, the badge appears automatically, no further steps.
+- `custom.ingredients` is **not** pre-wired in the template (Shopify's theme
+  validator rejects a metafield reference baked into a template file before the
+  metafield exists, which would break the whole theme on sync). Once you've
+  created it, open the product template in the theme editor, select the
+  "Ingredients & Nutrition" accordion row's text block, and use **"Connect
+  dynamic source"** to bind it to `custom.ingredients`. Takes 10 seconds per
+  template, done once.
 
 The trust badges (Joint Health Support / Third Party Tested / Inflammation
 Relief) and their icons are plain theme editor block settings — you can also

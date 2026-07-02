@@ -502,7 +502,7 @@
                   "blocks": {
                     "text": {
                       "type": "text",
-                      "settings": { "text": "{{ closest.product.metafields.custom.ingredients }}" }
+                      "settings": { "text": "<p>Add your ingredients list here, or connect this text block to your custom.ingredients metafield via \"Connect dynamic source\" in the theme editor once it's created.</p>" }
                     }
                   },
                   "block_order": ["text"]
