@@ -530,7 +530,7 @@
               "name": "Bundle selector",
               "settings": {
                 "heading": "Choose your quantity",
-                "heading_preset": "h5",
+                "heading_preset": "h4",
                 "selected_background_color": "#EBFFFA",
                 "selected_border_color": "#095946",
                 "banner_background_color": "#F79D0D",
