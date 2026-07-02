@@ -57,7 +57,6 @@
       "type": "color",
       "id": "custom_button_background",
       "label": "t:settings.background",
-      "default": "{{ settings.color_palette.foreground }}",
       "alpha": true,
       "visible_if": "{{ block.settings.style_class == 'button-custom' }}"
     },
@@ -65,7 +64,6 @@
       "type": "color",
       "id": "custom_button_text",
       "label": "t:settings.text",
-      "default": "{{ settings.color_palette.background }}",
       "alpha": true,
       "visible_if": "{{ block.settings.style_class == 'button-custom' }}"
     },
@@ -73,7 +71,6 @@
       "type": "color",
       "id": "custom_button_border",
       "label": "t:settings.borders",
-      "default": "{{ settings.color_palette.background }}",
       "alpha": true,
       "visible_if": "{{ block.settings.style_class == 'button-custom' }}"
     },

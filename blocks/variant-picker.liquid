@@ -74,7 +74,6 @@
       "type": "color",
       "id": "custom_variant_background",
       "label": "t:settings.background",
-      "default": "{{ settings.color_palette.background }}",
       "alpha": true,
       "visible_if": "{{ block.settings.variant_style_class == 'custom' }}"
     },
@@ -82,7 +81,6 @@
       "type": "color",
       "id": "custom_variant_text",
       "label": "t:settings.text",
-      "default": "{{ settings.color_palette.foreground }}",
       "alpha": true,
       "visible_if": "{{ block.settings.variant_style_class == 'custom' }}"
     },
@@ -90,7 +88,6 @@
       "type": "color",
       "id": "custom_variant_border",
       "label": "t:settings.borders",
-      "default": "{{ settings.color_palette.foreground }}",
       "alpha": true,
       "visible_if": "{{ block.settings.variant_style_class == 'custom' }}"
     },
@@ -115,7 +112,6 @@
       "type": "color",
       "id": "custom_selected_variant_background",
       "label": "t:settings.background",
-      "default": "{{ settings.color_palette.foreground }}",
       "alpha": true,
       "visible_if": "{{ block.settings.variant_style == 'buttons' and block.settings.selected_variant_style_class == 'custom' }}"
     },
@@ -123,7 +119,6 @@
       "type": "color",
       "id": "custom_selected_variant_text",
       "label": "t:settings.text",
-      "default": "{{ settings.color_palette.background }}",
       "alpha": true,
       "visible_if": "{{ block.settings.variant_style == 'buttons' and block.settings.selected_variant_style_class == 'custom' }}"
     },
@@ -131,7 +126,6 @@
       "type": "color",
       "id": "custom_selected_variant_border",
       "label": "t:settings.borders",
-      "default": "{{ settings.color_palette.foreground }}",
       "alpha": true,
       "visible_if": "{{ block.settings.variant_style == 'buttons' and block.settings.selected_variant_style_class == 'custom' }}"
     },
