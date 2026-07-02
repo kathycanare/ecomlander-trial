@@ -48,14 +48,19 @@
 </subscription-toggle-component>
 
 {% stylesheet %}
-  .subscription-toggle {
+.subscription-toggle {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: var(--gap-3xs, 0.25rem);
     background: var(--subscription-toggle-background, transparent);
     border: 2.5px dashed var(--subscription-toggle-border, var(--color-border));
     border-radius: 10px;
     padding: var(--padding-md);
+  }
+
+  .subscription-toggle .checkbox__label {
+    display: flex;
+    align-items: center;
   }
 
   .subscription-toggle .checkbox {
