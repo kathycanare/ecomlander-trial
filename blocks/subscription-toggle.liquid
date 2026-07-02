@@ -38,24 +38,43 @@
     id: 'SubscriptionToggle-' | append: block.id,
     name: 'subscription-toggle-opt-in',
     value: '1',
-    label: block_settings.label,
+    label: '',
     checked: block_settings.default_checked,
     disabled: false
   %}
-  {%- if block_settings.description != blank -%}
-    <p class="subscription-toggle__description">{{ block_settings.description }}</p>
-  {%- endif -%}
+  <div class="subscription-toggle__text">
+    {%- if block_settings.label != blank -%}
+      <label class="subscription-toggle__heading" for="SubscriptionToggle-{{ block.id }}">{{ block_settings.label }}</label>
+    {%- endif -%}
+    {%- if block_settings.description != blank -%}
+      <p class="subscription-toggle__description">{{ block_settings.description }}</p>
+    {%- endif -%}
+  </div>
 </subscription-toggle-component>
 
 {% stylesheet %}
 .subscription-toggle {
     display: flex;
-    flex-direction: column;
-    gap: var(--gap-3xs, 0.25rem);
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
     background: var(--subscription-toggle-background, transparent);
     border: 2.5px dashed var(--subscription-toggle-border, var(--color-border));
     border-radius: 10px;
     padding: var(--padding-md);
+  }
+
+  .subscription-toggle__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .subscription-toggle__heading {
+    font-weight: 700;
+    font-size: var(--font-size--md, 1.05rem);
+    color: var(--subscription-toggle-heading-color, inherit);
+    cursor: pointer;
   }
 
   .subscription-toggle .checkbox {
@@ -63,12 +82,8 @@
     align-items: center;
   }
 
-  .subscription-toggle .checkbox__label {
-    display: flex;
-    align-items: center;
-    font-weight: 700;
-    font-size: var(--font-size--md, 1.05rem);
-    color: var(--subscription-toggle-heading-color, inherit);
+  .subscription-toggle .checkbox {
+    flex-shrink: 0;
   }
 
   .subscription-toggle .checkbox__input {
@@ -97,7 +112,6 @@
 
   .subscription-toggle__description {
     margin: 0;
-    margin-inline-start: calc(var(--icon-size-sm, 18px) + var(--gap-2xs, 0.5rem));
     font-size: var(--font-size--sm, 0.8rem);
     color: var(--subscription-toggle-description-color, inherit);
   }
