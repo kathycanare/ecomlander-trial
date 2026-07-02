@@ -623,7 +623,7 @@
                   "settings": {
                     "option_value_name": "2+1",
                     "display_label": "Buy 2, Get 1 Free",
-                    "label_highlight": "",
+                    "label_highlight": "1 Free",
                     "unit_count": 3,
                     "unit_label": "bottle",
                     "banner_text": "92% of customers choose: Buy 2, Get 1 Free",
@@ -637,7 +637,7 @@
                   "settings": {
                     "option_value_name": "3+2",
                     "display_label": "Buy 3, Get 2 Free",
-                    "label_highlight": "",
+                    "label_highlight": "2 Free",
                     "unit_count": 5,
                     "unit_label": "bottle",
                     "banner_text": "",
