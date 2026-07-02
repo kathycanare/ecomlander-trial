@@ -126,7 +126,9 @@
 
 {% stylesheet %}
   .bundle-option {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     position: relative;
     border: 1px solid var(--color-border);
     border-radius: var(--style-border-radius-xs, 8px);
@@ -157,6 +159,8 @@
 
   .bundle-option__banner {
     display: block;
+    width: 100%;
+    box-sizing: border-box;
     background: var(--bundle-banner-background, orange);
     color: var(--bundle-banner-text, #1a1a1a);
     font-size: var(--font-size--sm, 0.8rem);
@@ -181,6 +185,7 @@
   .bundle-option__row {
     display: flex;
     align-items: center;
+    width: 100%;
     gap: var(--gap-sm, 0.75rem);
     min-height: 103px;
     padding: 0 var(--padding-md);

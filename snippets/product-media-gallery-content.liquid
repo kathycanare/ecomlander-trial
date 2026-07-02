@@ -416,7 +416,9 @@
             controls_on_media: controls_on_media,
             pagination_position: pagination_position,
             aspect_ratio: block_settings.aspect_ratio,
-            thumbnail_radius: block_settings.thumbnail_radius
+            thumbnail_radius: block_settings.thumbnail_radius,
+            icon_style: block_settings.icons_style,
+            shape: block_settings.icons_shape
           -%}
         {% endif %}
 
@@ -429,7 +431,9 @@
             controls_on_media: mobile_controls_on_media,
             pagination_position: 'center',
             aspect_ratio: block_settings.aspect_ratio,
-            thumbnail_radius: block_settings.thumbnail_radius
+            thumbnail_radius: block_settings.thumbnail_radius,
+            icon_style: block_settings.icons_style,
+            shape: block_settings.icons_shape
           -%}
         {% endif %}
       {% endcapture %}
