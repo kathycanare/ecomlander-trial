@@ -48,7 +48,12 @@
       assign price_per_unit = variant.price
     endif
 
-    assign option_media = block_settings.image_override | default: variant.featured_image | default: product.featured_image
+    # A File-type metafield returns a file object, not an image — unwrap its
+    # preview image (falls back to the object itself for image-reference types).
+    assign meta_file = variant.metafields.custom.bundle_image.value
+    assign meta_img = meta_file.preview_image | default: meta_file
+
+    assign option_media = block_settings.image_override | default: meta_img | default: variant.featured_image | default: product.featured_image
     assign radio_name = bundle_option.name | handleize | append: '-' | append: product.id
 
     # Build the display label, optionally highlighting a substring in the accent colour.
