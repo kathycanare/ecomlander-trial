@@ -12,10 +12,30 @@
   badge_text_color: block.settings.badge_text_color
 %}
 
+{%- if block.blocks.size > 0 -%}
+  <div class="product-media-gallery__blocks">
+    {% content_for 'blocks' %}
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .product-media-gallery__blocks {
+    margin-top: var(--margin-md, 1rem);
+  }
+{% endstylesheet %}
+
 {% schema %}
 {
   "name": "t:names.product_media",
   "tag": null,
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "@app"
+    }
+  ],
   "settings": [
     {
       "type": "select",

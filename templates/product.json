@@ -34,20 +34,20 @@
           "type": "_product-media-gallery",
           "static": true,
           "settings": {
-            "media_presentation": "grid",
-            "media_columns": "two",
-            "image_gap": 4,
+            "media_presentation": "carousel",
+            "media_columns": "one",
+            "image_gap": 12,
             "large_first_image": false,
-            "icons_style": "none",
-            "slideshow_controls_style": "counter",
+            "icons_style": "arrow",
+            "slideshow_controls_style": "thumbnails",
             "slideshow_mobile_controls_style": "dots",
-            "thumbnail_position": "right",
-            "thumbnail_width": 44,
-            "thumbnail_radius": 0,
+            "thumbnail_position": "left",
+            "thumbnail_width": 64,
+            "thumbnail_radius": 8,
             "aspect_ratio": "adapt",
             "constrain_to_viewport": true,
             "media_fit": "contain",
-            "media_radius": 0,
+            "media_radius": 8,
             "extend_media": false,
             "zoom": true,
             "video_loop": false,
@@ -57,7 +57,105 @@
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
-          "blocks": {}
+          "blocks": {
+            "icon_badges_1": {
+              "type": "group",
+              "name": "Trust badges",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": false,
+                "horizontal_alignment": "space-between",
+                "vertical_alignment": "center",
+                "gap": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 16,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "badge_1": {
+                  "type": "icon-badge",
+                  "settings": { "icon": "check_box", "label": "Joint Health Support" }
+                },
+                "badge_2": {
+                  "type": "icon-badge",
+                  "settings": { "icon": "recycle", "label": "Third Party Tested" }
+                },
+                "badge_3": {
+                  "type": "icon-badge",
+                  "settings": { "icon": "stopwatch", "label": "Inflammation Relief" }
+                }
+              },
+              "block_order": ["badge_1", "badge_2", "badge_3"]
+            },
+            "accordion_1": {
+              "type": "accordion",
+              "name": "Product details",
+              "settings": {
+                "padding-block-start": 16
+              },
+              "blocks": {
+                "row_description": {
+                  "type": "_accordion-row",
+                  "settings": { "heading": "Product Description" },
+                  "blocks": {
+                    "text": {
+                      "type": "text",
+                      "settings": { "text": "<p>Add your detailed product description here.</p>" }
+                    }
+                  },
+                  "block_order": ["text"]
+                },
+                "row_ingredients": {
+                  "type": "_accordion-row",
+                  "settings": { "heading": "Ingredients & Nutrition" },
+                  "blocks": {
+                    "text": {
+                      "type": "text",
+                      "settings": { "text": "<p>Add your ingredients list here, or connect this text block to your custom.ingredients metafield via \"Connect dynamic source\" in the theme editor once it's created.</p>" }
+                    }
+                  },
+                  "block_order": ["text"]
+                },
+                "row_faq": {
+                  "type": "_accordion-row",
+                  "settings": { "heading": "Frequently Asked Questions" },
+                  "blocks": {
+                    "text": {
+                      "type": "text",
+                      "settings": { "text": "<p>Add your FAQ content here.</p>" }
+                    }
+                  },
+                  "block_order": ["text"]
+                },
+                "row_shipping": {
+                  "type": "_accordion-row",
+                  "settings": { "heading": "Shipping, Returns & 60 Day Guarantee" },
+                  "blocks": {
+                    "text": {
+                      "type": "text",
+                      "settings": { "text": "<p>Add your shipping and returns policy here.</p>" }
+                    }
+                  },
+                  "block_order": ["text"]
+                }
+              },
+              "block_order": ["row_description", "row_ingredients", "row_faq", "row_shipping"]
+            }
+          },
+          "block_order": ["icon_badges_1", "accordion_1"]
         },
         "product-details": {
           "type": "_product-details",
@@ -459,100 +557,6 @@
                 "video_3": { "type": "_video-testimonial-card" }
               },
               "block_order": ["video_1", "video_2", "video_3"]
-            },
-            "icon_badges_1": {
-              "type": "group",
-              "name": "Trust badges",
-              "settings": {
-                "content_direction": "row",
-                "vertical_on_mobile": false,
-                "horizontal_alignment": "space-between",
-                "vertical_alignment": "center",
-                "gap": 8,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "background_media": "none",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "padding-block-start": 16,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "badge_1": {
-                  "type": "icon-badge",
-                  "settings": { "icon": "check_box", "label": "Joint Health Support" }
-                },
-                "badge_2": {
-                  "type": "icon-badge",
-                  "settings": { "icon": "recycle", "label": "Third Party Tested" }
-                },
-                "badge_3": {
-                  "type": "icon-badge",
-                  "settings": { "icon": "stopwatch", "label": "Inflammation Relief" }
-                }
-              },
-              "block_order": ["badge_1", "badge_2", "badge_3"]
-            },
-            "accordion_1": {
-              "type": "accordion",
-              "name": "Product details",
-              "settings": {},
-              "blocks": {
-                "row_description": {
-                  "type": "_accordion-row",
-                  "settings": { "heading": "Product Description" },
-                  "blocks": {
-                    "text": {
-                      "type": "text",
-                      "settings": { "text": "<p>Add your detailed product description here.</p>" }
-                    }
-                  },
-                  "block_order": ["text"]
-                },
-                "row_ingredients": {
-                  "type": "_accordion-row",
-                  "settings": { "heading": "Ingredients & Nutrition" },
-                  "blocks": {
-                    "text": {
-                      "type": "text",
-                      "settings": { "text": "<p>Add your ingredients list here, or connect this text block to your custom.ingredients metafield via \"Connect dynamic source\" in the theme editor once it's created.</p>" }
-                    }
-                  },
-                  "block_order": ["text"]
-                },
-                "row_faq": {
-                  "type": "_accordion-row",
-                  "settings": { "heading": "Frequently Asked Questions" },
-                  "blocks": {
-                    "text": {
-                      "type": "text",
-                      "settings": { "text": "<p>Add your FAQ content here.</p>" }
-                    }
-                  },
-                  "block_order": ["text"]
-                },
-                "row_shipping": {
-                  "type": "_accordion-row",
-                  "settings": { "heading": "Shipping, Returns & 60 Day Guarantee" },
-                  "blocks": {
-                    "text": {
-                      "type": "text",
-                      "settings": { "text": "<p>Add your shipping and returns policy here.</p>" }
-                    }
-                  },
-                  "block_order": ["text"]
-                }
-              },
-              "block_order": ["row_description", "row_ingredients", "row_faq", "row_shipping"]
             }
           },
           "block_order": [
@@ -564,9 +568,7 @@
             "subscription_toggle_1",
             "buy_buttons_eYQEYi",
             "trust_rows_1",
-            "video_testimonials_1",
-            "icon_badges_1",
-            "accordion_1"
+            "video_testimonials_1"
           ]
         }
       },
