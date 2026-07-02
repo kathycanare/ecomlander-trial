@@ -844,7 +844,7 @@
               "type": "video-testimonials",
               "settings": {
                 "heading": "Real Change for Real People",
-                "heading_preset": "h5",
+                "heading_preset": "h4",
                 "columns": 3,
                 "mobile_columns": "3",
                 "columns_gap": 8,
