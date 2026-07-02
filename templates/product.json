@@ -9,6 +9,52 @@
  */
 {
   "sections": {
+    "scrolling_marquee_fVE7p8": {
+      "type": "scrolling-marquee",
+      "blocks": {
+        "text_item_GYndQW": {
+          "type": "text_item",
+          "settings": {
+            "text": "Comfortable knees and hips"
+          }
+        },
+        "text_item_6DVkaf": {
+          "type": "text_item",
+          "settings": {
+            "text": "Smoother daily movement"
+          }
+        },
+        "text_item_Xw4gXM": {
+          "type": "text_item",
+          "settings": {
+            "text": "Easier morning starts"
+          }
+        },
+        "text_item_NNU6bg": {
+          "type": "text_item",
+          "settings": {
+            "text": "Feel more flexible"
+          }
+        }
+      },
+      "block_order": [
+        "text_item_GYndQW",
+        "text_item_6DVkaf",
+        "text_item_Xw4gXM",
+        "text_item_NNU6bg"
+      ],
+      "name": "Scrolling marquee",
+      "settings": {
+        "scroll_speed": 40,
+        "item_gap": 40,
+        "font_size": 16,
+        "padding_vertical": 16,
+        "background_color": "#0F3D2E",
+        "text_color": "#FFFFFF",
+        "show_separator": true,
+        "separator_character": "•"
+      }
+    },
     "main": {
       "type": "product-information",
       "blocks": {
@@ -1009,6 +1055,7 @@
     }
   },
   "order": [
+    "scrolling_marquee_fVE7p8",
     "main",
     "product_recommendations_qggXJq"
   ]
