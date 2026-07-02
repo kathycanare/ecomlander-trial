@@ -41,15 +41,55 @@
     class: 'video-testimonials__slideshow',
     style: slideshow_style,
     slides: slides_content,
-    show_arrows: show_arrows,
-    icon_style: block_settings.icons_style,
-    icon_shape: block_settings.icons_shape,
+    show_arrows: false,
     auto_hide_controls: false,
     infinite: false,
     initial_slide: 0,
     slide_count: slide_count
   %}
+
+  {%- if slide_count > 1 -%}
+    <div class="video-testimonials__controls" data-vt-controls>
+      <button type="button" class="video-testimonials__arrow" data-vt-prev aria-label="Previous">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="video-testimonials__dots" data-vt-dots>
+        {%- for i in (1..slide_count) -%}
+          <button type="button" class="video-testimonials__dot{% if forloop.first %} is-active{% endif %}" data-vt-dot="{{ forloop.index0 }}" aria-label="Go to slide {{ forloop.index }}"></button>
+        {%- endfor -%}
+      </div>
+      <button type="button" class="video-testimonials__arrow" data-vt-next aria-label="Next">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  {%- endif -%}
 </div>
+
+<script>
+  (function () {
+    const root = document.currentScript.previousElementSibling;
+    if (!root) return;
+    const slideshow = root.querySelector('slideshow-component');
+    const controls = root.querySelector('[data-vt-controls]');
+    if (!slideshow || !controls) return;
+
+    const dots = Array.from(controls.querySelectorAll('[data-vt-dot]'));
+
+    controls.querySelector('[data-vt-prev]')?.addEventListener('click', () => slideshow.previous?.());
+    controls.querySelector('[data-vt-next]')?.addEventListener('click', () => slideshow.next?.());
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const i = parseInt(dot.dataset.vtDot, 10);
+        slideshow.select?.(i);
+      });
+    });
+
+    slideshow.addEventListener('slideshow:select', (e) => {
+      const idx = e.detail?.index ?? 0;
+      dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+    });
+  })();
+</script>
 
 {% stylesheet %}
   .video-testimonials__heading {
@@ -75,36 +115,61 @@
     display: none;
   }
 
-  .video-testimonials__slideshow slideshow-arrows .slideshow-control {
-    background: #ffffff !important;
-    border: 1.5px solid #095946 !important;
-    border-radius: 50% !important;
-    color: #095946 !important;
-    opacity: 1 !important;
-    mix-blend-mode: normal !important;
+  .video-testimonials__controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
   }
 
-  .video-testimonials__slideshow slideshow-arrows .slideshow-control svg {
-    color: #095946 !important;
-    stroke: #095946 !important;
+  .video-testimonials__arrow {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border: 1.5px solid #095946;
+    border-radius: 50%;
+    color: #095946;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.15s ease;
   }
 
-  .video-testimonials__slideshow slideshow-arrows {
-    position: static !important;
-    inset: auto !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 1rem !important;
-    margin-top: 1.25rem !important;
-    mix-blend-mode: normal !important;
-    pointer-events: auto !important;
+  .video-testimonials__arrow:hover {
+    background: #f0f7f4;
   }
 
-  .video-testimonials__slideshow slideshow-arrows .slideshow-control {
-    width: 44px !important;
-    height: 44px !important;
-    position: static !important;
+  .video-testimonials__arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .video-testimonials__dots {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #eef2f0;
+    padding: 8px 12px;
+    border-radius: 999px;
+  }
+
+  .video-testimonials__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: #c2d4cd;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+
+  .video-testimonials__dot.is-active {
+    background: #095946;
   }
 
   .video-testimonials__slideshow .slideshow-controls__dots button::after {
