@@ -71,14 +71,17 @@
     color: var(--subscription-toggle-heading-color, inherit);
   }
 
-  .subscription-toggle .checkbox__input:checked + .checkbox__label svg,
-  .subscription-toggle .checkbox__label svg {
-    color: var(--subscription-toggle-check-color, inherit);
+  .subscription-toggle .checkbox__input:checked::after {
+    background-color: var(--subscription-toggle-check-color) !important;
+    border-color: var(--subscription-toggle-check-color) !important;
   }
 
   .subscription-toggle .checkbox__input:checked {
-    background-color: var(--subscription-toggle-check-color, inherit);
-    border-color: var(--subscription-toggle-check-color, inherit);
+    border-color: var(--subscription-toggle-check-color) !important;
+  }
+
+  .subscription-toggle .checkbox__label svg {
+    stroke: var(--subscription-toggle-check-color) !important;
   }
 
   .subscription-toggle__description {
