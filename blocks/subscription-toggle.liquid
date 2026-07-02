@@ -27,6 +27,8 @@
     {% render 'spacing-style', settings: block_settings %}
     --subscription-toggle-background: {{ block_settings.background_color }};
     --subscription-toggle-border: {{ block_settings.border_color }};
+    {% if block_settings.heading_color != blank %}--subscription-toggle-heading-color: {{ block_settings.heading_color }};{% endif %}
+    {% if block_settings.description_color != blank %}--subscription-toggle-description-color: {{ block_settings.description_color }};{% endif %}
   "
   data-selling-plan-id="{{ selling_plan_id }}"
   {{ block.shopify_attributes }}
@@ -37,7 +39,7 @@
     value: '1',
     label: block_settings.label,
     checked: block_settings.default_checked,
-    disabled: selling_plan_id == blank
+    disabled: false
   %}
   {%- if block_settings.description != blank -%}
     <p class="subscription-toggle__description">{{ block_settings.description }}</p>
@@ -50,15 +52,23 @@
     flex-direction: column;
     gap: var(--gap-3xs, 0.25rem);
     background: var(--subscription-toggle-background, transparent);
-    border: 1px dashed var(--subscription-toggle-border, var(--color-border));
-    border-radius: var(--style-border-radius-xs, 6px);
+    border: 2.5px dashed var(--subscription-toggle-border, var(--color-border));
+    border-radius: 10px;
     padding: var(--padding-md);
+  }
+
+  .subscription-toggle .checkbox__label,
+  .subscription-toggle label {
+    font-weight: 700;
+    font-size: var(--font-size--md, 1.05rem);
+    color: var(--subscription-toggle-heading-color, inherit);
   }
 
   .subscription-toggle__description {
     margin: 0;
     margin-inline-start: calc(var(--icon-size-sm, 18px) + var(--gap-2xs, 0.5rem));
     font-size: var(--font-size--sm, 0.8rem);
+    color: var(--subscription-toggle-description-color, inherit);
     opacity: var(--opacity-subdued-text);
   }
 {% endstylesheet %}
@@ -105,6 +115,16 @@
       "id": "border_color",
       "label": "Border color",
       "default": "#0F3D2E"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading text color"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description text color"
     },
     {
       "type": "header",
