@@ -1,5 +1,5 @@
 
-<div class="product-media-gallery-block-{{ block.id }}">
+<div class="product-media-gallery-host">
   {% render 'product-media-gallery-content',
     media_presentation: block.settings.media_presentation,
     block_settings: block.settings,
@@ -25,10 +25,15 @@
     margin-top: var(--margin-md, 1rem);
   }
 
-  /* The gallery's own sticky-follow-on-scroll behavior (theme default) reads oddly once trust
-     badges + the accordion render underneath it in this block — turn it off here specifically. */
-  .product-media-gallery-block-{{ block.id }} media-gallery {
-    position: static;
+  /* The gallery's own sticky-follow-on-scroll behavior (theme default) makes the hero image
+     stay pinned and overlap the trust badges + accordion that now render underneath it in this
+     block. Force it back into normal flow so the whole column scrolls together.
+     NOTE: a static host class is required here — Shopify does not evaluate Liquid inside a
+     stylesheet tag, so a block-id-based selector would never match. */
+  .product-media-gallery-host media-gallery,
+  .product-media-gallery-host media-gallery.sticky-content {
+    position: static !important;
+    top: auto !important;
   }
 {% endstylesheet %}
 
