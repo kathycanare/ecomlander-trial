@@ -531,14 +531,14 @@
               "settings": {
                 "heading": "Choose your quantity",
                 "heading_preset": "h5",
-                "selected_background_color": "#e7f5ef",
-                "selected_border_color": "#0f3d2e",
-                "banner_background_color": "#f3a712",
-                "banner_text_color": "#1a1a1a",
-                "save_badge_background_color": "#b3261e",
+                "selected_background_color": "#EBFFFA",
+                "selected_border_color": "#095946",
+                "banner_background_color": "#F79D0D",
+                "banner_text_color": "#043126",
+                "save_badge_background_color": "#C13B3B",
                 "save_badge_text_color": "#ffffff",
-                "best_value_background_color": "#f3a712",
-                "best_value_text_color": "#1a1a1a",
+                "best_value_background_color": "#F79D0D",
+                "best_value_text_color": "#043126",
                 "padding-block-start": 8,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -568,7 +568,8 @@
                     "unit_count": 3,
                     "unit_label": "bottle",
                     "banner_text": "92% of customers choose: Buy 2, Get 1 Free",
-                    "best_value_badge": false
+                    "best_value_badge": false,
+                    "image_override": "shopify://shop_images/Group_2087327335_ac99580b-4811-4a00-bbf8-432372f94cd0.png"
                   },
                   "blocks": {}
                 },
@@ -581,7 +582,8 @@
                     "unit_count": 5,
                     "unit_label": "bottle",
                     "banner_text": "",
-                    "best_value_badge": true
+                    "best_value_badge": true,
+                    "image_override": "shopify://shop_images/Group_2087327334_f0438f36-eb20-4f15-b577-f9a39598e5f9.png"
                   },
                   "blocks": {}
                 }
