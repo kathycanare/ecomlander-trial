@@ -29,6 +29,7 @@
     --subscription-toggle-border: {{ block_settings.border_color }};
     {% if block_settings.heading_color != blank %}--subscription-toggle-heading-color: {{ block_settings.heading_color }};{% endif %}
     {% if block_settings.description_color != blank %}--subscription-toggle-description-color: {{ block_settings.description_color }};{% endif %}
+    {% if block_settings.check_color != blank %}--subscription-toggle-check-color: {{ block_settings.check_color }};{% endif %}
   "
   data-selling-plan-id="{{ selling_plan_id }}"
   {{ block.shopify_attributes }}
@@ -57,11 +58,20 @@
     padding: var(--padding-md);
   }
 
-  .subscription-toggle .checkbox__label,
-  .subscription-toggle label {
+  .subscription-toggle .checkbox__label {
     font-weight: 700;
     font-size: var(--font-size--md, 1.05rem);
     color: var(--subscription-toggle-heading-color, inherit);
+  }
+
+  .subscription-toggle .checkbox__input:checked + .checkbox__label svg,
+  .subscription-toggle .checkbox__label svg {
+    color: var(--subscription-toggle-check-color, inherit);
+  }
+
+  .subscription-toggle .checkbox__input:checked {
+    background-color: var(--subscription-toggle-check-color, inherit);
+    border-color: var(--subscription-toggle-check-color, inherit);
   }
 
   .subscription-toggle__description {
@@ -69,7 +79,6 @@
     margin-inline-start: calc(var(--icon-size-sm, 18px) + var(--gap-2xs, 0.5rem));
     font-size: var(--font-size--sm, 0.8rem);
     color: var(--subscription-toggle-description-color, inherit);
-    opacity: var(--opacity-subdued-text);
   }
 {% endstylesheet %}
 
@@ -125,6 +134,11 @@
       "type": "color",
       "id": "description_color",
       "label": "Description text color"
+    },
+    {
+      "type": "color",
+      "id": "check_color",
+      "label": "Checkmark color"
     },
     {
       "type": "header",
