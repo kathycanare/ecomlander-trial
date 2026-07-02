@@ -53,17 +53,15 @@
 
   <script type="module">
     (function () {
-      const wrapper = document.currentScript.previousElementSibling;
-      if (!wrapper) return;
-
-      const picker = document.querySelector('variant-picker[data-product-id="{{ product.id }}"]') || document.querySelector('variant-picker');
-      if (!picker) return;
-
       const moneyFormat = {{ shop.money_format | json }};
 
       function formatMoney(cents) {
         const amount = (cents / 100).toFixed(2);
         return moneyFormat.replace(/\{\{\s*amount\s*\}\}/, amount);
+      }
+
+      function getWrapper() {
+        return document.querySelector('.custom-cta-wrapper');
       }
 
       let productData = null;
@@ -75,6 +73,8 @@
       }
 
       async function updatePrice(variantId) {
+        const wrapper = getWrapper();
+        if (!wrapper) return;
         const priceEl = wrapper.querySelector('[data-cta-price]');
         const compareEl = wrapper.querySelector('[data-cta-compare]');
         const button = wrapper.querySelector('.custom-cta-button');
