@@ -89,7 +89,7 @@
           endif
         -%}
         {%- if delivery_text != blank -%}
-          <span class="product-inventory__delivery"> | {{ block_settings.delivery_prefix }} {{ delivery_text }}</span>
+          <span class="product-inventory__delivery"> | {{ block_settings.delivery_prefix }} <span class="product-inventory__delivery-date">{{ delivery_text }}</span></span>
         {%- endif -%}
       {%- endif -%}
     </span>
@@ -111,6 +111,10 @@
 
   .product-inventory__delivery {
     font-weight: 400;
+  }
+
+  .product-inventory__delivery-date {
+    font-weight: 700;
   }
 
   .product-inventory__icon,
