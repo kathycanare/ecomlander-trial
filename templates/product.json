@@ -42,7 +42,7 @@
             "icons_style": "arrow",
             "icons_shape": "circle",
             "slideshow_controls_style": "thumbnails",
-            "slideshow_mobile_controls_style": "dots",
+            "slideshow_mobile_controls_style": "thumbnails",
             "thumbnail_position": "left",
             "thumbnail_width": 64,
             "thumbnail_radius": 8,
