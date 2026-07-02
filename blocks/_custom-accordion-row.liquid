@@ -14,7 +14,9 @@
     </span>
   </summary>
   <div class="custom-accordion-row__body">
-    {{ block_settings.content }}
+    <div class="custom-accordion-row__body-inner">
+      {{ block_settings.content }}
+    </div>
   </div>
 </details>
 
@@ -60,14 +62,25 @@
   }
 
   .custom-accordion-row__body {
-    padding: 0 24px 20px;
+    display: grid;
+    grid-template-rows: 1fr;
     color: var(--accordion-body-color, #444);
     font-size: var(--font-size--sm, 0.95rem);
     line-height: 1.5;
+    transition: grid-template-rows 0.28s ease;
+  }
+
+  .custom-accordion-row__body-inner {
+    overflow: hidden;
+    padding: 0 24px 20px;
   }
 
   .custom-accordion-row__body > *:first-child {
     margin-top: 0;
+  }
+
+  .custom-accordion-row__icon {
+    transition: transform 0.28s ease;
   }
 {% endstylesheet %}
 
