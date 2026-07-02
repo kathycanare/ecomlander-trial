@@ -54,6 +54,7 @@
         "disclosures_g9mWze": {
           "type": "disclosures",
           "name": "t:names.disclosures",
+          "disabled": true,
           "settings": {
             "heading": "Disclosures",
             "heading_preset": "h5",
