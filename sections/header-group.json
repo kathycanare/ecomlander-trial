@@ -19,8 +19,8 @@
           "settings": {
             "text": "LIMITED TIME OFFER - SAVE<strong> UP TO 71% OFF</strong>",
             "link": "",
-            "font": "var(--font-heading--family)",
-            "font_size": "0.75rem",
+            "font": "var(--font-body--family)",
+            "font_size": "0.875rem",
             "weight": "",
             "letter_spacing": "normal",
             "case": "none",
