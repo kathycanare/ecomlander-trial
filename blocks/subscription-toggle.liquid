@@ -67,13 +67,19 @@
   .subscription-toggle__text {
     display: flex;
     flex-direction: column;
+    gap: 0;
   }
 
   .subscription-toggle__heading {
     font-weight: 700;
     font-size: var(--font-size--md, 1.05rem);
+    line-height: 1.25;
     color: var(--subscription-toggle-heading-color, inherit);
     cursor: pointer;
+  }
+
+  .subscription-toggle__description {
+    line-height: 1.25;
   }
 
   .subscription-toggle .checkbox {
