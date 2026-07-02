@@ -86,6 +86,11 @@
     cursor: zoom-in;
   }
 
+  /* =========================================================
+     Figma match: cap main gallery media height (desktop)
+     Scoped to slideshow slides so the fullscreen zoom view
+     is left untouched.
+     ========================================================= */
   @media screen and (min-width: 750px) {
     media-gallery slideshow-slide.product-media-container {
       max-height: 540px;
@@ -101,35 +106,49 @@
     }
   }
 
+  /* =========================================================
+     Figma match: round, green-outlined carousel arrows.
+     Forced over the theme defaults (blend mode + accent ring).
+     ========================================================= */
   media-gallery slideshow-arrows .slideshow-control,
   .media-gallery--carousel slideshow-arrows .slideshow-control {
     width: 48px !important;
     height: 48px !important;
     padding: 0 !important;
-    border: 2px solid #0f3d2e !important; 
+    border: 2px solid #0f3d2e !important;
     border-radius: 50% !important;
     background: #ffffff !important;
     color: #0f3d2e !important;
     mix-blend-mode: normal !important;
     box-shadow: none !important;
+    outline: none !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
+    /* neutralise the theme's accent variables that tint the ring */
+    --slideshow-control-color: #0f3d2e !important;
+    --color-primary: #0f3d2e !important;
   }
 
   media-gallery slideshow-arrows .slideshow-control:hover {
     background: #f4f4f4 !important;
   }
 
-  media-gallery slideshow-arrows .slideshow-control svg {
-    width: 20px !important;
-    height: 20px !important;
+  /* Some Horizon versions wrap the icon in an inner element that
+     carries the blend mode / colour — neutralise it too. */
+  media-gallery slideshow-arrows .slideshow-control > * {
+    mix-blend-mode: normal !important;
+    background: transparent !important;
     color: #0f3d2e !important;
-    fill: currentColor !important;
   }
 
-  media-gallery slideshow-arrows .slideshow-control svg path {
+  media-gallery slideshow-arrows .slideshow-control svg,
+  media-gallery slideshow-arrows .slideshow-control svg * {
+    mix-blend-mode: normal !important;
+    color: #0f3d2e !important;
     fill: #0f3d2e !important;
     stroke: #0f3d2e !important;
+    width: 20px !important;
+    height: 20px !important;
   }
 {% endstylesheet %}
