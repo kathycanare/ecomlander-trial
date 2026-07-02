@@ -664,6 +664,7 @@
                 "border_color": "#095946",
                 "heading_color": "#043227",
                 "description_color": "#282828",
+                "check_color": "#095946",
                 "padding-block-start": 8,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
