@@ -590,6 +590,7 @@
               "settings": {
                 "heading": "Choose your quantity",
                 "heading_size": 20,
+                "heading_color": "#043227",
                 "selected_background_color": "#ebfffa",
                 "highlight_color": "#1b9075",
                 "selected_border_color": "#095946",
@@ -861,12 +862,13 @@
               "settings": {
                 "heading": "Real Change for Real People",
                 "heading_size": 20,
+                "heading_color": "#043227",
                 "columns": 3,
                 "mobile_columns": "3",
                 "columns_gap": 8,
                 "icons_style": "arrow",
                 "icons_shape": "circle",
-                "padding-block-start": 24,
+                "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
@@ -877,6 +879,7 @@
                   "settings": {
                     "source": "uploaded",
                     "video_url": "",
+                    "thumbnail_image": "shopify://shop_images/750_x_1350_px_1200_x_1600_px_13.png",
                     "customer_name": "",
                     "padding-block-start": 0,
                     "padding-block-end": 0,
