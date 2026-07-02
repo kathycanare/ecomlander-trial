@@ -521,7 +521,7 @@
                 "option_1": {
                   "type": "_bundle-option",
                   "settings": {
-                    "option_value_name": "1 Bottle",
+                    "option_value_name": "Buy 1",
                     "display_label": "",
                     "label_highlight": "",
                     "unit_count": 1,
