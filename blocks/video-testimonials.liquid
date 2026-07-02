@@ -21,7 +21,7 @@
   {{ block.shopify_attributes }}
 >
   {%- if block_settings.heading != blank -%}
-    <p class="video-testimonials__heading {{ block_settings.heading_preset }}">{{ block_settings.heading }}</p>
+    <p class="video-testimonials__heading" style="font-size: {{ block_settings.heading_size }}px;">{{ block_settings.heading }}</p>
   {%- endif -%}
 
   {%- capture slides_content -%}
@@ -51,7 +51,8 @@
 {% stylesheet %}
   .video-testimonials__heading {
     margin: 0 0 var(--margin-md, 1rem);
-    font-weight: 600;
+    font-weight: 700;
+    text-align: center;
   }
 
   .video-testimonials__slideshow slideshow-slides {
@@ -68,6 +69,28 @@
 
   .video-testimonials__slideshow .slideshow-control[disabled] {
     display: none;
+  }
+
+  .video-testimonials__slideshow slideshow-arrows .slideshow-control {
+    background: #ffffff !important;
+    border: 1.5px solid #095946 !important;
+    border-radius: 50% !important;
+    color: #095946 !important;
+    opacity: 1 !important;
+    mix-blend-mode: normal !important;
+  }
+
+  .video-testimonials__slideshow slideshow-arrows .slideshow-control svg {
+    color: #095946 !important;
+    stroke: #095946 !important;
+  }
+
+  .video-testimonials__slideshow .slideshow-controls__dots button::after {
+    background-color: #cfe3da !important;
+  }
+
+  .video-testimonials__slideshow .slideshow-controls__dots button[aria-selected='true']::after {
+    background-color: #095946 !important;
   }
 {% endstylesheet %}
 
@@ -88,15 +111,14 @@
       "default": "Real Change for Real People"
     },
     {
-      "type": "select",
-      "id": "heading_preset",
+      "type": "range",
+      "id": "heading_size",
       "label": "Heading size",
-      "options": [
-        { "value": "h6", "label": "Small" },
-        { "value": "h5", "label": "Medium" },
-        { "value": "h4", "label": "Large" }
-      ],
-      "default": "h5"
+      "min": 14,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "default": 28
     },
     {
       "type": "header",
