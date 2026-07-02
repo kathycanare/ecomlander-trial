@@ -893,6 +893,7 @@
                   "settings": {
                     "source": "uploaded",
                     "video_url": "",
+                    "thumbnail_image": "shopify://shop_images/750_x_1350_px_1200_x_1600_px_15.png",
                     "customer_name": "",
                     "padding-block-start": 0,
                     "padding-block-end": 0,
@@ -906,6 +907,7 @@
                   "settings": {
                     "source": "uploaded",
                     "video_url": "",
+                    "thumbnail_image": "shopify://shop_images/750_x_1350_px_1200_x_1600_px_14.png",
                     "customer_name": "",
                     "padding-block-start": 0,
                     "padding-block-end": 0,
@@ -919,6 +921,7 @@
                   "name": "Testimonial video",
                   "settings": {
                     "source": "uploaded",
+                    "video_url": "",
                     "customer_name": "",
                     "padding-block-start": 0,
                     "padding-block-end": 0,
