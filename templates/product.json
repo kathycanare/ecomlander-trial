@@ -861,7 +861,7 @@
               "type": "video-testimonials",
               "settings": {
                 "heading": "Real Change for Real People",
-                "heading_size": 20,
+                "heading_size": 25,
                 "heading_color": "#043227",
                 "columns": 3,
                 "mobile_columns": "3",
@@ -922,6 +922,7 @@
                   "settings": {
                     "source": "uploaded",
                     "video_url": "",
+                    "thumbnail_image": "shopify://shop_images/750_x_1350_px_1200_x_1600_px_13.png",
                     "customer_name": "",
                     "padding-block-start": 0,
                     "padding-block-end": 0,
