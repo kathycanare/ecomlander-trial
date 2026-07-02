@@ -48,14 +48,25 @@
     slide_count: slide_count
   %}
 
-  {%- if slide_count > 1 -%}
-    <div class="video-testimonials__controls" data-vt-controls>
+{%- liquid
+    assign per_page = block_settings.columns | at_most: slide_count
+    if per_page < 1
+      assign per_page = 1
+    endif
+    assign page_count = slide_count | divided_by: per_page
+    assign remainder = slide_count | modulo: per_page
+    if remainder > 0
+      assign page_count = page_count | plus: 1
+    endif
+  -%}
+  {%- if page_count > 1 -%}
+    <div class="video-testimonials__controls" data-vt-controls data-vt-per-page="{{ per_page }}">
       <button type="button" class="video-testimonials__arrow" data-vt-prev aria-label="Previous">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 12H4M4 12l6-6M4 12l6 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <div class="video-testimonials__dots" data-vt-dots>
-        {%- for i in (1..slide_count) -%}
-          <button type="button" class="video-testimonials__dot{% if forloop.first %} is-active{% endif %}" data-vt-dot="{{ forloop.index0 }}" aria-label="Go to slide {{ forloop.index }}"></button>
+        {%- for i in (1..page_count) -%}
+          <button type="button" class="video-testimonials__dot{% if forloop.first %} is-active{% endif %}" data-vt-dot="{{ forloop.index0 }}" aria-label="Go to page {{ forloop.index }}"></button>
         {%- endfor -%}
       </div>
       <button type="button" class="video-testimonials__arrow" data-vt-next aria-label="Next">
@@ -77,16 +88,19 @@
 
     controls.querySelector('[data-vt-prev]')?.addEventListener('click', () => slideshow.previous?.());
     controls.querySelector('[data-vt-next]')?.addEventListener('click', () => slideshow.next?.());
+    const perPage = parseInt(controls.dataset.vtPerPage, 10) || 1;
+
     dots.forEach((dot) => {
       dot.addEventListener('click', () => {
-        const i = parseInt(dot.dataset.vtDot, 10);
-        slideshow.select?.(i);
+        const page = parseInt(dot.dataset.vtDot, 10);
+        slideshow.select?.(page * perPage);
       });
     });
 
     slideshow.addEventListener('slideshow:select', (e) => {
       const idx = e.detail?.index ?? 0;
-      dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+      const activePage = Math.floor(idx / perPage);
+      dots.forEach((d, i) => d.classList.toggle('is-active', i === activePage));
     });
   })();
 </script>
