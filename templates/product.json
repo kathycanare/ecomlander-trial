@@ -411,9 +411,9 @@
                   "settings": {
                     "text": "<h2>{{ closest.product.title }}</h2>",
                     "width": "100%",
-                    "max_width": "normal",
+                    "max_width": "none",
                     "alignment": "left",
-                    "type_preset": "h2",
+                    "type_preset": "h3",
                     "font": "var(--font-primary--family)",
                     "font_size": "1rem",
                     "line_height": "normal",
