@@ -785,6 +785,9 @@
                   "settings": {
                     "inventory_threshold": 10,
                     "show_inventory_quantity": true,
+                    "show_delivery": true,
+                    "delivery_prefix": "Available for delivery by:",
+                    "delivery_days": 5,
                     "text_color": "",
                     "padding-block-start": 0,
                     "padding-block-end": 0,
@@ -798,6 +801,8 @@
                   "settings": {
                     "icon": "truck",
                     "image_upload": "shopify://shop_images/Untitled_design_-_2026-07-03T061348.557.png",
+                    "show_flag": true,
+                    "flag_image": "shopify://shop_images/Untitled_design_-_2026-07-03T071301.604.png",
                     "text": "Fast, tracked shipping to United States",
                     "link": "",
                     "open_in_new_tab": false,
@@ -813,6 +818,7 @@
                   "settings": {
                     "icon": "lock",
                     "image_upload": "shopify://shop_images/Untitled_design_-_2026-07-03T061634.541.png",
+                    "show_flag": false,
                     "text": "60 day money back guarantee",
                     "link": "",
                     "open_in_new_tab": false,
@@ -828,6 +834,7 @@
                   "settings": {
                     "icon": "clipboard",
                     "image_upload": "shopify://shop_images/Untitled_design_-_2026-07-03T061819.557.png",
+                    "show_flag": false,
                     "text": "Full Ingredients List",
                     "link": "#",
                     "open_in_new_tab": false,
