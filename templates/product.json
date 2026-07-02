@@ -67,6 +67,7 @@
             "accordion_1": {
               "type": "accordion",
               "name": "Product details",
+              "disabled": true,
               "settings": {
                 "icon": "plus",
                 "dividers": false,
