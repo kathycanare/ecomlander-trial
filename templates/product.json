@@ -68,8 +68,8 @@
               "type": "accordion",
               "name": "Product details",
               "settings": {
-                "icon": "caret",
-                "dividers": true,
+                "icon": "plus",
+                "dividers": false,
                 "divider_color": "",
                 "type_preset": "h6",
                 "background_color": "",
