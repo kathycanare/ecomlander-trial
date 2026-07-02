@@ -1,5 +1,4 @@
 {%- doc -%}
-  Product media gallery content styles extracted into a standalone snippet.
 
   @example
   {% render 'product-media-gallery-content-styles' %}
@@ -11,7 +10,6 @@
   }
 
   media-gallery.media-gallery--grid .media-gallery__grid .product-media-container {
-    /* Needed for safari to stretch to full grid height */
     height: 100%;
   }
 
@@ -20,7 +18,6 @@
       grid-template-columns: repeat(2, 1fr);
     }
 
-    /* Display grid view as a carousel on mobile, grid on desktop */
     media-gallery:is(.media-gallery--grid) slideshow-component {
       display: none;
     }
@@ -88,10 +85,10 @@
   .product-media-container--zoomable.product-media-container--image {
     cursor: zoom-in;
   }
-  
+
   @media screen and (min-width: 750px) {
     media-gallery slideshow-slide.product-media-container {
-      max-height: 540px; /* tweak this number to taste */
+      max-height: 540px;
     }
     media-gallery slideshow-slide.product-media-container .product-media {
       aspect-ratio: auto;
@@ -104,26 +101,35 @@
     }
   }
 
+  media-gallery slideshow-arrows .slideshow-control,
   .media-gallery--carousel slideshow-arrows .slideshow-control {
-    width: 48px;
-    height: 48px;
-    padding: 0;
-    border: 2px solid #0f3d2e;   /* brand green — change to match Figma */
-    border-radius: 50%;
-    color: #0f3d2e;
-    background: rgba(255, 255, 255, 0.85);
-    mix-blend-mode: normal;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    width: 48px !important;
+    height: 48px !important;
+    padding: 0 !important;
+    border: 2px solid #0f3d2e !important; 
+    border-radius: 50% !important;
+    background: #ffffff !important;
+    color: #0f3d2e !important;
+    mix-blend-mode: normal !important;
+    box-shadow: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
-  .media-gallery--carousel slideshow-arrows .slideshow-control:hover {
-    background: #fff;
+  media-gallery slideshow-arrows .slideshow-control:hover {
+    background: #f4f4f4 !important;
   }
 
-  .media-gallery--carousel slideshow-arrows .slideshow-control svg {
-    width: 20px;
-    height: 20px;
+  media-gallery slideshow-arrows .slideshow-control svg {
+    width: 20px !important;
+    height: 20px !important;
+    color: #0f3d2e !important;
+    fill: currentColor !important;
+  }
+
+  media-gallery slideshow-arrows .slideshow-control svg path {
+    fill: #0f3d2e !important;
+    stroke: #0f3d2e !important;
   }
 {% endstylesheet %}
