@@ -554,7 +554,8 @@
                     "unit_count": 1,
                     "unit_label": "bottle",
                     "banner_text": "",
-                    "best_value_badge": false
+                    "best_value_badge": false,
+                    "image_override": "shopify://shop_images/image_25345_b10e4101-4e0b-4ca4-a943-f6f2bb96d7e6.png"
                   },
                   "blocks": {}
                 },
