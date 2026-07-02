@@ -88,44 +88,40 @@
 
   .subscription-toggle .checkbox {
     position: relative;
-    width: 32px;
-    height: 32px;
     flex-shrink: 0;
   }
 
-  .subscription-toggle .checkbox__input {
-    width: 32px !important;
-    height: 32px !important;
-    min-width: 32px !important;
-    border-radius: 8px !important;
-    border: 2px solid var(--subscription-toggle-check-color, #0F3D2E) !important;
-    background: transparent !important;
-    appearance: none !important;
-    -webkit-appearance: none !important;
-    cursor: pointer;
-    margin: 0 !important;
-  }
-
-  .subscription-toggle .checkbox__input:checked {
-    background: var(--subscription-toggle-check-color, #0F3D2E) !important;
-    border-color: var(--subscription-toggle-check-color, #0F3D2E) !important;
-  }
-
-  .subscription-toggle .checkbox__input:checked::after {
-    content: '' !important;
-    position: absolute !important;
-    left: 11px !important;
-    top: 6px !important;
-    width: 7px !important;
-    height: 13px !important;
-    border: solid #ffffff !important;
-    border-width: 0 2.5px 2.5px 0 !important;
-    transform: rotate(45deg) !important;
-    background: none !important;
-  }
-
   .subscription-toggle .checkbox__label {
-    display: none !important;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 2px solid var(--subscription-toggle-check-color, #0F3D2E);
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .subscription-toggle .checkbox__input:checked + .checkbox__label {
+    background: var(--subscription-toggle-check-color, #0F3D2E);
+  }
+
+  .subscription-toggle .checkbox__label svg {
+    display: none;
+  }
+
+  .subscription-toggle .checkbox__input:checked + .checkbox__label::after {
+    content: '';
+    position: absolute;
+    left: 11px;
+    top: 6px;
+    width: 7px;
+    height: 13px;
+    border: solid #ffffff;
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg);
   }
 
   .subscription-toggle__description {
