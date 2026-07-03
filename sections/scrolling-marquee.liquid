@@ -17,7 +17,7 @@
   {%- if section.blocks.size > 0 -%}
     <div class="marquee-section__viewport">
       <div class="marquee-section__track">
-        {%- for i in (1..8) -%}
+        {%- for i in (1..4) -%}
           <div class="marquee-section__group" {% if i != 1 %}aria-hidden="true"{% endif %}>
             {%- for block in section.blocks -%}
               <div class="marquee-section__item" {{ block.shopify_attributes }}>
@@ -39,6 +39,14 @@
     background-color: var(--marquee-bg);
     overflow: hidden;
     width: 100%;
+  }
+
+  .section-marquee {
+    overflow-x: clip;
+  }
+
+  .marquee-section__viewport {
+    max-width: 100%;
   }
 
   .marquee-section__viewport {
@@ -86,7 +94,7 @@
       transform: translateX(0);
     }
     to {
-      transform: translateX(-12.5%);
+      transform: translateX(-25%);
     }
   }
 
