@@ -328,6 +328,9 @@
   class="{{ class }}"
   data-theme-color="rgb({{ section.settings.background_color_top.rgb | default: settings.page_background_color.rgb }})"
   data-bubble-style="{{ section.settings.bubble_style }}"
+  {% if section.settings.always_show_hamburger %}
+    data-force-drawer="true"
+  {% endif %}
   {% if transparent %}
     transparent="{{ transparent }}"
   {% endif %}
@@ -1167,6 +1170,63 @@
     font-family: var(--menu-localization-font);
     font-size: var(--menu-localization-font-size);
   }
+
+  @media screen and (min-width: 750px) {
+    #header-component[data-force-drawer] :is(.header-menu, .dropdown-localization) {
+      display: none;
+    }
+  }
+
+  #header-component[data-force-drawer] .header__column {
+    display: contents;
+  }
+
+  #header-component[data-force-drawer] .header__navigation-bar-row,
+  #header-component[data-force-drawer] .header__row--bottom {
+    display: none;
+  }
+
+  #header-component[data-force-drawer] .header__columns {
+    --header-template-columns: var(--header-mobile-bookend) var(--header-mobile-bookend) 1fr
+      var(--header-mobile-bookend) var(--header-mobile-bookend);
+
+    grid-template-areas: 'leftA leftB center rightA rightB';
+    grid-column: span 3;
+    column-gap: 0;
+    align-items: center;
+    padding-block: 0;
+    padding-inline: 0 var(--padding-3xs);
+  }
+
+  #header-component[data-force-drawer] .header__columns .header-logo {
+    grid-area: center;
+  }
+
+  #header-component[data-force-drawer] .header__columns .header__icon--menu {
+    grid-area: leftA;
+  }
+
+  #header-component[data-force-drawer] .header__columns:not(:has(header-actions)) .search-action {
+    grid-area: leftB;
+  }
+
+  #header-component[data-force-drawer] .header__columns:not(:has(shopify-account)) .search-action {
+    grid-area: rightA;
+  }
+
+  #header-component[data-force-drawer] .header__columns .search-action {
+    grid-area: leftB;
+  }
+
+  #header-component[data-force-drawer] .header__columns header-actions {
+    grid-area: rightB;
+  }
+
+  #header-component[data-force-drawer] .header__row--top:not(.divider--page-width),
+  #header-component[data-force-drawer] .header__row--top.divider--page-width .header__columns {
+    border-bottom-width: var(--border-bottom-width-mobile);
+    border-bottom-color: var(--border-bottom-color-mobile);
+  }
 {% endstylesheet %}
 
 {% unless request.design_mode %}
@@ -1247,6 +1307,12 @@
         }
       ],
       "default": "top"
+    },
+    {
+      "type": "checkbox",
+      "id": "always_show_hamburger",
+      "label": "Always show hamburger menu",
+      "default": false
     },
     {
       "type": "header",
