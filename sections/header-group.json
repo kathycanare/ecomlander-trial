@@ -86,6 +86,7 @@
         "logo_position": "center",
         "menu_position": "left",
         "menu_row": "top",
+        "always_show_hamburger": true,
         "customer_account_menu": "customer-account-main-menu",
         "show_search": false,
         "search_position": "right",
@@ -132,7 +133,7 @@
       "name": "t:names.divider_section",
       "settings": {
         "background_color": "",
-        "divider_color": "#CEDEDA",
+        "divider_color": "#cededa",
         "section_width": "full-width",
         "thickness": 1,
         "corner_radius": "square",
