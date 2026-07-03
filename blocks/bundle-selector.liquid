@@ -88,22 +88,27 @@
           return document.querySelector('product-form-component form') || document.querySelector('form[action*="/cart/add"]');
         }
 
-        function syncQuantity() {
+        function currentQty() {
           const checked = picker.querySelector('input[data-bundle-quantity][data-current-checked="true"]')
             || picker.querySelector('input[data-bundle-quantity]:checked');
-          if (!checked) return;
-          const qty = checked.dataset.bundleQuantity || '1';
+          return checked ? (checked.dataset.bundleQuantity || '1') : '1';
+        }
+
+        function syncQuantity() {
+          const qty = currentQty();
           const form = findForm();
           if (!form) return;
 
-          let qtyInput = form.querySelector('input[name="quantity"]');
-          if (!qtyInput) {
-            qtyInput = document.createElement('input');
+          const existing = form.querySelectorAll('input[name="quantity"], quantity-selector input, [name="quantity"]');
+          if (existing.length) {
+            existing.forEach((el) => { el.value = qty; });
+          } else {
+            const qtyInput = document.createElement('input');
             qtyInput.type = 'hidden';
             qtyInput.name = 'quantity';
+            qtyInput.value = qty;
             form.appendChild(qtyInput);
           }
-          qtyInput.value = qty;
         }
 
         document.addEventListener('change', (e) => {
@@ -117,6 +122,20 @@
             setTimeout(syncQuantity, 100);
           }
         });
+
+        document.addEventListener('submit', (e) => {
+          const form = e.target;
+          if (!form.matches('form[action*="/cart/add"], product-form-component form')) return;
+          const qty = currentQty();
+          let qtyInput = form.querySelector('input[name="quantity"]');
+          if (!qtyInput) {
+            qtyInput = document.createElement('input');
+            qtyInput.type = 'hidden';
+            qtyInput.name = 'quantity';
+            form.appendChild(qtyInput);
+          }
+          qtyInput.value = qty;
+        }, true);
 
         syncQuantity();
       })();
