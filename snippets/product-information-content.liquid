@@ -237,6 +237,10 @@
             grid-column: 3 / 4;
             padding-left: calc(max(var(--gap, 0px), 24px) / 2);
           }
+
+          &:has(.media-gallery--extend) .product-details {
+            grid-column: 3 / -1;
+          }
         }
 
         &.product-information--media-right {
