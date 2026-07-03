@@ -127,6 +127,24 @@
           const form = e.target;
           if (!form.matches('form[action*="/cart/add"], product-form-component form')) return;
           const qty = currentQty();
+          form.querySelectorAll('input[name="quantity"]').forEach((el) => { el.value = qty; });
+          let qtyInput = form.querySelector('input[name="quantity"]');
+          if (!qtyInput) {
+            qtyInput = document.createElement('input');
+            qtyInput.type = 'hidden';
+            qtyInput.name = 'quantity';
+            form.appendChild(qtyInput);
+          }
+          qtyInput.value = qty;
+        }, true);
+
+        document.addEventListener('click', (e) => {
+          const btn = e.target.closest('[name="add"], button[type="submit"], .custom-cta-button');
+          if (!btn) return;
+          const qty = currentQty();
+          const form = findForm();
+          if (!form) return;
+          form.querySelectorAll('input[name="quantity"]').forEach((el) => { el.value = qty; });
           let qtyInput = form.querySelector('input[name="quantity"]');
           if (!qtyInput) {
             qtyInput = document.createElement('input');
