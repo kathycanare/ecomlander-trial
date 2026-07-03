@@ -23,18 +23,15 @@
 </div>
 
 {% stylesheet %}
-  /* The parent "group" block has no built-in wrap setting (its flex container always renders
-     --flex-wrap: nowrap inline); scope a wrap override to groups that actually contain
-     feature-checkmark items so the 2-up grid works without a global override. */
   .group-block-content:has(> .feature-checkmark) {
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .feature-checkmark {
     display: flex;
     align-items: center;
     gap: var(--gap-2xs, 0.5rem);
-    flex: 1 1 45%;
     min-width: 0;
   }
 
