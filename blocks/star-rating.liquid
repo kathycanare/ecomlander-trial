@@ -78,10 +78,13 @@
   .star-rating__text {
     color: var(--star-rating-text-color, inherit);
     font-size: var(--star-rating-text-size, 15px);
-    white-space: nowrap;
     min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  }
+
+  @media screen and (max-width: 749px) {
+    .star-rating__text {
+      font-size: clamp(12px, 3.4vw, var(--star-rating-text-size, 15px));
+    }
   }
 
   @media screen and (min-width: 750px) and (max-width: 1024px) {
