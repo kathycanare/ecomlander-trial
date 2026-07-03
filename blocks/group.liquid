@@ -4,13 +4,35 @@
   {% content_for 'blocks' %}
 {% endcapture %}
 
-{% render 'group',
-  children: children,
-  settings: block.settings,
-  shopify_attributes: block.shopify_attributes,
-  background_color: block.settings.background_color,
-  block_id: block.id
-%}
+{% if block.settings.no_full_width %}
+  <div class="group-compact">
+    {% render 'group',
+      children: children,
+      settings: block.settings,
+      shopify_attributes: block.shopify_attributes,
+      background_color: block.settings.background_color,
+      block_id: block.id
+    %}
+  </div>
+{% else %}
+  {% render 'group',
+    children: children,
+    settings: block.settings,
+    shopify_attributes: block.shopify_attributes,
+    background_color: block.settings.background_color,
+    block_id: block.id
+  %}
+{% endif %}
+
+{% stylesheet %}
+  .group-compact {
+    display: contents;
+  }
+
+  .group-compact > * {
+    justify-content: flex-start !important;
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
@@ -163,6 +185,12 @@
       "step": 1,
       "unit": "px",
       "default": 12
+    },
+    {
+      "type": "checkbox",
+      "id": "no_full_width",
+      "label": "Don't stretch elements to full width",
+      "default": false
     },
     {
       "type": "header",
