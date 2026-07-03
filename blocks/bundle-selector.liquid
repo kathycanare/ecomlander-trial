@@ -117,6 +117,33 @@
           }
         });
 
+        const originalFetch = window.fetch;
+        window.fetch = function (input, init) {
+          try {
+            const url = typeof input === 'string' ? input : (input && input.url);
+            if (url && url.includes('/cart/add') && init && init.body) {
+              const qty = parseInt(currentQty(), 10) || 1;
+              if (typeof init.body === 'string') {
+                try {
+                  const parsed = JSON.parse(init.body);
+                  parsed.quantity = qty;
+                  if (Array.isArray(parsed.items)) {
+                    parsed.items = parsed.items.map((it) => ({ ...it, quantity: qty }));
+                  }
+                  init.body = JSON.stringify(parsed);
+                } catch (err) {
+                  const params = new URLSearchParams(init.body);
+                  params.set('quantity', qty);
+                  init.body = params.toString();
+                }
+              } else if (init.body instanceof FormData) {
+                init.body.set('quantity', qty);
+              }
+            }
+          } catch (err) {}
+          return originalFetch.apply(this, arguments);
+        };
+
         document.addEventListener('click', (e) => {
           if (e.target.closest('.bundle-option')) {
             setTimeout(syncQuantity, 100);
