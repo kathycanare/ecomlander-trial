@@ -103,6 +103,7 @@
     const summary = details.querySelector('summary');
     if (!summary) return;
 
+    const DURATION = 300;
     let animating = false;
 
     summary.addEventListener('click', (e) => {
@@ -112,14 +113,11 @@
       if (details.open) {
         animating = true;
         details.setAttribute('data-closing', '');
-        const body = details.querySelector('.custom-accordion-row__body');
-        const onEnd = () => {
+        setTimeout(() => {
           details.open = false;
           details.removeAttribute('data-closing');
           animating = false;
-          body.removeEventListener('transitionend', onEnd);
-        };
-        body.addEventListener('transitionend', onEnd);
+        }, DURATION);
       } else {
         details.open = true;
       }
