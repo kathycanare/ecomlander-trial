@@ -25,7 +25,10 @@
 {% stylesheet %}
   .group-block-content:has(> .feature-checkmark) {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, max-content);
+    width: fit-content;
+    max-width: 100%;
+    gap: 1rem 2.5rem !important;
   }
 
   .feature-checkmark {
