@@ -13,7 +13,7 @@ Added a @font-face block (one per weight: 400 Regular, 500 Medium, 700 Bold, 900
 Only .woff2 was needed. Format string in the src line is format('woff2').
 
 
-Gotcha: Google Fonts downloads as .ttf; had to convert to .woff2 (via Google Webfonts Helper) for smaller files. Only 4 weights uploaded, not the whole family, to keep load time down.
+Notes: Google Fonts downloads as .ttf; had to convert to .woff2 (via Google Webfonts Helper) for smaller files. Only 4 weights uploaded, not the whole family, to keep load time down.
 
 
 2. Product Media Gallery
@@ -28,7 +28,7 @@ Disabled arrow state: pale mint when at the end of the gallery. Required turning
 Thumbnails full height: attempted several times; the grid-based layout made this fragile. Left at a working state — revisit carefully (see Known Issues).
 
 
-Gotcha: .media-gallery--carousel vs --grid — selectors scoped to --carousel won't match if the block is in Grid presentation.
+Notes: .media-gallery--carousel vs --grid — selectors scoped to --carousel won't match if the block is in Grid presentation.
 
 
 3. Badge ("BESTSELLER")
@@ -63,7 +63,7 @@ Settings: rating, richtext (so you can bold "Excellent"), alignment, star color,
 Stars + text forced onto one row at all sizes via white-space: nowrap and clamp() sizing (clamp(15px, 4.5vw, ...)).
 
 
-Gotcha: This is a static display rating, not pulled from real reviews. Swap to a review-app metafield if you want live data.
+Notes: This is a static display rating, not pulled from real reviews. Swap to a review-app metafield if you want live data.
 
 
 6. Announcement Bar — Bold Text Color
@@ -74,7 +74,7 @@ File: the announcement/text block
 Added a "Bold text color" setting. Anything bolded in the richtext (<strong>) picks up that color; the rest stays normal.
 
 
-Gotcha: Only works on text bolded with the inline B button (<strong>), not text that's bold because the whole block's weight is set to Bold.
+Notes: Only works on text bolded with the inline B button (<strong>), not text that's bold because the whole block's weight is set to Bold.
 
 
 7. Bundle Selector
@@ -99,7 +99,7 @@ A JS fetch wrapper in bundle-selector.liquid rewrites the /cart/add quantity to 
 Discount decision still open: either use a Shopify automatic discount to charge the true bundle price, OR use per-tile display overrides (price/compare/save%/per-unit) and accept that the cart charges £19 × qty. Display overrides = display only, they don't change what's charged.
 
 
-Gotcha: Two "Buy X Get Y" discounts collide (both are product-class discounts, overlap at 5 bottles). "Amount off products" with minimum-quantity conditions is cleaner but still needs "Combine with product discounts" unchecked and testing at both tiers (3 → £38, 5 → £57).
+Notes: Two "Buy X Get Y" discounts collide (both are product-class discounts, overlap at 5 bottles). "Amount off products" with minimum-quantity conditions is cleaner but still needs "Combine with product discounts" unchecked and testing at both tiers (3 → £38, 5 → £57).
 
 
 8. Custom CTA / Add to Cart Button
@@ -114,7 +114,7 @@ Color customizers: button background, add-to-cart text, compare-price pill backg
 Live price update: a delegated change listener on document reads the checked bundle input's data-variant-id, fetches the product .js, and updates the price. Wrapper looked up fresh each update (stale reference after morph was the bug).
 
 
-Gotcha: Since all tiles now use the same £19 variant, the CTA may show £19 regardless of tier. If you want it to show the bundle price, it needs to read the tile's displayed price instead of the variant price.
+Notes: Since all tiles now use the same £19 variant, the CTA may show £19 regardless of tier. If you want it to show the bundle price, it needs to read the tile's displayed price instead of the variant price.
 
 
 9. Subscription Toggle ("Save 20% on automatic refills")
@@ -129,7 +129,7 @@ Color customizers: heading, description (full opacity), checkmark color.
 Tight line-height (1.25) to reduce heading/description gap.
 
 
-Gotcha: The checkbox is drawn from scratch (appearance overridden on the label), so it no longer uses the theme's native checkbox visuals — that's why the color finally obeyed.
+Notes: The checkbox is drawn from scratch (appearance overridden on the label), so it no longer uses the theme's native checkbox visuals — that's why the color finally obeyed.
 
 
 10. Scrolling Marquee
@@ -142,7 +142,7 @@ Settings: scroll speed, gap, font size, vertical padding, background/text color,
 Bold text + separator.
 
 
-Gotcha: Seamlessness rule — the translateX percentage must equal 100% ÷ number of copies. Currently 8 copies → -12.5%. Add more text blocks if the strip doesn't fill wide screens.
+Notes: Seamlessness rule — the translateX percentage must equal 100% ÷ number of copies. Currently 8 copies → -12.5%. Add more text blocks if the strip doesn't fill wide screens.
 
 
 11. Trust Rows ("In stock", shipping, guarantee, ingredients)
@@ -156,7 +156,7 @@ Delivery estimate: "Available for delivery by: [date]" — prefers a custom.deli
 Flag support: toggle + flag image upload + bold text after the flag (for "Fast, Tracked Shipping to: [flag] United States").
 
 
-Gotcha: Delivery date fallback uses calendar days and renders at page-build time (Shopify caches). Metafield route is more reliable. Flags use uploaded images, not emoji (emoji flags don't render on Windows).
+Notes: Delivery date fallback uses calendar days and renders at page-build time (Shopify caches). Metafield route is more reliable. Flags use uploaded images, not emoji (emoji flags don't render on Windows).
 
 
 12. Video Testimonials
@@ -171,7 +171,7 @@ Custom slider controls built from scratch (theme's arrows were broken/mis-positi
 Dots = pages, not videos: count = ceil(slides ÷ columns). Active dot syncs on click, arrow, AND swipe (reads slideshow.current + a throttled scroll listener on the scroller).
 
 
-Gotcha: Mobile breakpoint hardcoded to 749px assuming 1 card/page on mobile. Dot count generated server-side from desktop columns.
+Notes: Mobile breakpoint hardcoded to 749px assuming 1 card/page on mobile. Dot count generated server-side from desktop columns.
 
 
 13. Custom Accordion
@@ -186,7 +186,7 @@ Visibility toggle: "Show on" (Desktop & mobile / Desktop only / Mobile only) for
 Smooth expand/collapse: animated via max-height (JS measures scrollHeight) — smoother than the earlier grid-template-rows approach which lagged.
 
 
-Gotchas:
+Notes:
 
 
 The row file MUST be named _custom-accordion-row.liquid (leading underscore) to match the type in the parent schema and to be a private/nested block.
