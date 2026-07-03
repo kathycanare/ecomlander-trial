@@ -33,6 +33,8 @@ class HeaderComponent extends Component {
    */
   #menuDrawerHiddenWidth = null;
 
+  #forceDrawerObserver = null;
+
   /**
    * An intersection observer for monitoring sticky header position
    * @type {IntersectionObserver | null}
@@ -125,6 +127,8 @@ class HeaderComponent extends Component {
    * @param {boolean} hideMenu - Whether to hide the menu and show the drawer
    */
   #updateMenuVisibility(hideMenu) {
+    if (this.hasAttribute('data-force-drawer')) return;
+
     if (hideMenu) {
       this.#menuDrawerHiddenWidth = window.innerWidth;
     } else {
@@ -226,6 +230,14 @@ class HeaderComponent extends Component {
     this.#resizeObserver.observe(this);
     this.addEventListener('overflowMinimum', this.#handleOverflowMinimum);
 
+    if (this.hasAttribute('data-force-drawer')) {
+      this.dataset.menuStyle = 'drawer';
+      this.#forceDrawerObserver = new MutationObserver(() => {
+        if (this.dataset.menuStyle !== 'drawer') this.dataset.menuStyle = 'drawer';
+      });
+      this.#forceDrawerObserver.observe(this, { attributes: true, attributeFilter: ['data-menu-style'] });
+    }
+
     const stickyMode = this.getAttribute('sticky');
     if (stickyMode) {
       this.#observeStickyPosition(stickyMode === 'always');
@@ -243,6 +255,7 @@ class HeaderComponent extends Component {
     super.disconnectedCallback();
     this.#resizeObserver.disconnect();
     this.#intersectionObserver?.disconnect();
+    this.#forceDrawerObserver?.disconnect();
     this.removeEventListener('overflowMinimum', this.#handleOverflowMinimum);
     scrollContainerMediaQuery.removeEventListener('change', this.#handleBreakpointChange);
     this.#scrollContainer?.removeEventListener('scroll', this.#handleWindowScroll);
