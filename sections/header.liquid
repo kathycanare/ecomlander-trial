@@ -1194,8 +1194,13 @@
     grid-column: span 3;
     column-gap: 0;
     align-items: center;
-    padding-block: 0;
-    padding-inline: 0 var(--padding-3xs);
+  }
+
+  @media screen and (max-width: 749px) {
+    #header-component[data-force-drawer] .header__columns {
+      padding-block: 0;
+      padding-inline: 0 var(--padding-3xs);
+    }
   }
 
   #header-component[data-force-drawer] .header__columns .header-logo {
