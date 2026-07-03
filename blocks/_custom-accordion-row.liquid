@@ -62,29 +62,17 @@
   }
 
   .custom-accordion-row__body {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 0.3s ease;
-  }
-
-  .custom-accordion-row[open] .custom-accordion-row__body {
-    grid-template-rows: 1fr;
-  }
-
-  .custom-accordion-row[open][data-closing] .custom-accordion-row__body {
-    grid-template-rows: 0fr !important;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    will-change: max-height;
   }
 
   .custom-accordion-row__body-inner {
-    overflow: hidden;
-    padding: 0 24px 0;
+    padding: 0 24px 20px;
     color: var(--accordion-body-color, #444);
     font-size: var(--font-size--sm, 0.95rem);
     line-height: 1.5;
-  }
-
-  .custom-accordion-row[open] .custom-accordion-row__body-inner {
-    padding-bottom: 20px;
   }
 
   .custom-accordion-row__body-inner > *:first-child {
@@ -101,26 +89,45 @@
     const details = document.currentScript.previousElementSibling;
     if (!details || details.tagName !== 'DETAILS') return;
     const summary = details.querySelector('summary');
-    if (!summary) return;
+    const body = details.querySelector('.custom-accordion-row__body');
+    if (!summary || !body) return;
 
-    const DURATION = 300;
     let animating = false;
+
+    function openRow() {
+      details.open = true;
+      body.style.maxHeight = body.scrollHeight + 'px';
+      animating = true;
+      body.addEventListener('transitionend', function done() {
+        body.style.maxHeight = 'none';
+        animating = false;
+        body.removeEventListener('transitionend', done);
+      }, { once: true });
+    }
+
+    function closeRow() {
+      body.style.maxHeight = body.scrollHeight + 'px';
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          body.style.maxHeight = '0px';
+        });
+      });
+      animating = true;
+      body.addEventListener('transitionend', function done() {
+        details.open = false;
+        animating = false;
+        body.removeEventListener('transitionend', done);
+      }, { once: true });
+    }
+
+    if (details.open) {
+      body.style.maxHeight = 'none';
+    }
 
     summary.addEventListener('click', (e) => {
       e.preventDefault();
       if (animating) return;
-
-      if (details.open) {
-        animating = true;
-        details.setAttribute('data-closing', '');
-        setTimeout(() => {
-          details.open = false;
-          details.removeAttribute('data-closing');
-          animating = false;
-        }, DURATION);
-      } else {
-        details.open = true;
-      }
+      details.open ? closeRow() : openRow();
     });
   })();
 </script>
