@@ -78,6 +78,49 @@
         </script>
       </form>
     </variant-picker>
+
+    <script>
+      (function () {
+        const picker = document.currentScript.previousElementSibling;
+        if (!picker) return;
+
+        function findForm() {
+          return document.querySelector('product-form-component form') || document.querySelector('form[action*="/cart/add"]');
+        }
+
+        function syncQuantity() {
+          const checked = picker.querySelector('input[data-bundle-quantity][data-current-checked="true"]')
+            || picker.querySelector('input[data-bundle-quantity]:checked');
+          if (!checked) return;
+          const qty = checked.dataset.bundleQuantity || '1';
+          const form = findForm();
+          if (!form) return;
+
+          let qtyInput = form.querySelector('input[name="quantity"]');
+          if (!qtyInput) {
+            qtyInput = document.createElement('input');
+            qtyInput.type = 'hidden';
+            qtyInput.name = 'quantity';
+            form.appendChild(qtyInput);
+          }
+          qtyInput.value = qty;
+        }
+
+        document.addEventListener('change', (e) => {
+          if (e.target.closest('input[data-bundle-quantity]')) {
+            setTimeout(syncQuantity, 50);
+          }
+        });
+
+        document.addEventListener('click', (e) => {
+          if (e.target.closest('.bundle-option')) {
+            setTimeout(syncQuantity, 100);
+          }
+        });
+
+        syncQuantity();
+      })();
+    </script>
   {%- elsif request.design_mode -%}
     <p class="bundle-selector__empty-state">
       None of the "Bundle option" blocks below match a real option value on this product yet. Add a
