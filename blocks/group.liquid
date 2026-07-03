@@ -32,6 +32,11 @@
   .group-compact .group-block-content {
     justify-content: flex-start !important;
   }
+
+  .group-compact .group-block-content > * {
+    flex-grow: 0 !important;
+    flex-basis: auto !important;
+  }
 {% endstylesheet %}
 
 {% schema %}
