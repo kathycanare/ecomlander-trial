@@ -77,11 +77,17 @@
 
   .star-rating__text {
     color: var(--star-rating-text-color, inherit);
-    font-size: clamp(11px, 1.6vw, var(--star-rating-text-size, 15px));
+    font-size: var(--star-rating-text-size, 15px);
     white-space: nowrap;
     min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  @media screen and (min-width: 750px) and (max-width: 1024px) {
+    .star-rating__text {
+      font-size: clamp(11px, 1.6vw, var(--star-rating-text-size, 15px));
+    }
   }
 {% endstylesheet %}
 
