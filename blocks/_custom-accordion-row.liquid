@@ -72,7 +72,7 @@
   }
 
   .custom-accordion-row[open][data-closing] .custom-accordion-row__body {
-    grid-template-rows: 0fr;
+    grid-template-rows: 0fr !important;
   }
 
   .custom-accordion-row__body-inner {
@@ -101,18 +101,28 @@
     const details = document.currentScript.previousElementSibling;
     if (!details || details.tagName !== 'DETAILS') return;
     const summary = details.querySelector('summary');
-    const body = details.querySelector('.custom-accordion-row__body');
-    if (!summary || !body) return;
+    if (!summary) return;
+
+    let animating = false;
 
     summary.addEventListener('click', (e) => {
-      if (!details.open) return;
       e.preventDefault();
-      body.style.transition = 'grid-template-rows 0.3s ease';
-      body.addEventListener('transitionend', () => {
-        details.open = false;
-      }, { once: true });
-      details.setAttribute('data-closing', '');
-      requestAnimationFrame(() => details.removeAttribute('data-closing'));
+      if (animating) return;
+
+      if (details.open) {
+        animating = true;
+        details.setAttribute('data-closing', '');
+        const body = details.querySelector('.custom-accordion-row__body');
+        const onEnd = () => {
+          details.open = false;
+          details.removeAttribute('data-closing');
+          animating = false;
+          body.removeEventListener('transitionend', onEnd);
+        };
+        body.addEventListener('transitionend', onEnd);
+      } else {
+        details.open = true;
+      }
     });
   })();
 </script>
