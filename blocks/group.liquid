@@ -30,12 +30,14 @@
   }
 
   .group-compact .group-block-content {
-    justify-content: flex-start !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: initial !important;
   }
 
   .group-compact .group-block-content > * {
-    flex-grow: 0 !important;
     flex-basis: auto !important;
+    min-width: 0;
   }
 {% endstylesheet %}
 
