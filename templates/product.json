@@ -809,7 +809,6 @@
             },
             "video_testimonials_1": {
               "type": "video-testimonials",
-              "disabled": true,
               "settings": {
                 "heading": "Real Change for Real People",
                 "heading_size": 25,
